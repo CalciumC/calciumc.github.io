@@ -1,0 +1,21 @@
+{
+  "name": "Calcium 自用 Block List",
+  "version": "1.0",
+  "homepage": "https://github.com/CalciumC/calciumc.github.io",
+  "color": "#08b6fb",
+  "data": {
+    "185290": [
+      {
+          "text": "五毛/假膠",
+          "reason": "將ViuTV同黃藍混為一談",
+          "url": "https://lihkg.com/thread/2537022/page/12",
+          "date": 1621511279587,
+          "source": {
+              "thread": "2537614",
+              "page": 1,
+              "messageNumber": "1"
+          }
+      }
+  ]
+  }
+}
