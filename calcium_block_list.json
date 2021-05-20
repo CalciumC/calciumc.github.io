@@ -1,21 +1,113 @@
 {
   "name": "Calcium 自用 Block List",
-  "version": "1.0",
+  "version": "1.01",
   "homepage": "https://github.com/CalciumC/calciumc.github.io",
   "color": "#08b6fb",
   "data": {
     "185290": [
       {
-          "text": "五毛/假膠",
-          "reason": "將ViuTV同黃藍混為一談",
-          "url": "https://lihkg.com/thread/2537022/page/12",
-          "date": 1621511279587,
-          "source": {
-              "thread": "2537614",
-              "page": 1,
-              "messageNumber": "1"
-          }
+        "text": "五毛/假膠",
+        "reason": "將ViuTV同黃藍混為一談",
+        "url": "https://lihkg.com/thread/2537022/page/12",
+        "date": 1621511279587,
+        "source": {
+          "thread": "2537614",
+          "page": 1,
+          "messageNumber": "1"
+        }
       }
-  ]
+    ],
+    "4526": [
+      {
+        "text": "五毛",
+        "reason": "著名五毛",
+        "url": "https://lihkg.com/thread/2538845/page/1",
+        "date": 1621514358758,
+        "source": {
+          "thread": "2473655",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "10090": [
+      {
+        "text": "試當真弱智毛",
+        "reason": "Locker hater, 倒米毛, channel 出事仲踩多腳",
+        "url": "https://lihkg.com/thread/2531999/page/12",
+        "date": 1621514004689,
+        "source": {
+          "thread": "2452334",
+          "page": 1,
+          "messageNumber": "7"
+        }
+      }
+    ],
+    "57229": [
+      {
+        "text": "試當真弱智毛",
+        "reason": "Locker hater, 睇RB都話唔尊重",
+        "url": "https://lihkg.com/thread/2531999/page/12",
+        "date": 1621513883299
+      }
+    ],
+    "84037": [
+      {
+        "text": "五毛",
+        "reason": "著名五毛",
+        "url": "https://lihkg.com/thread/2538845/page/1",
+        "date": 1621514365867,
+        "source": {
+          "thread": "2473655",
+          "page": 1,
+          "messageNumber": "2"
+        }
+      }
+    ],
+    "254191": [
+      {
+        "text": "試當真弱智毛",
+        "reason": "長期喺認真毛post引戰, 懶醒",
+        "url": "https://lihkg.com/thread/2531999/page/12",
+        "date": 1621514084431,
+        "source": {
+          "thread": "2531999",
+          "page": 12,
+          "messageNumber": "280"
+        }
+      },
+      {
+        "text": "試當真Hater",
+        "reason": "原來一早已經開post做hater, 扮d咩姐",
+        "url": "https://lihkg.com/thread/2538845/page/1",
+        "date": 1621514683817,
+        "source": {
+          "thread": "2366379",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "269730": [
+      {
+        "text": "弱智",
+        "reason": "WandaVision Post貼Black Widow劇透, post 垃圾片",
+        "url": "https://lihkg.com/thread/2414152/page/27",
+        "date": 1621514239610
+      }
+    ],
+    "276068": [
+      {
+        "text": "屎來姆打手",
+        "reason": "長期入認真毛post引戰, 成日開post攻擊試當真",
+        "url": "https://lihkg.com/thread/2538319/page/27?post=1c7e8af0a5ce2d83544d7c99958f33c28b906836",
+        "date": 1621514298228,
+        "source": {
+          "thread": "2538319",
+          "page": 27,
+          "messageNumber": "666"
+        }
+      }
+    ]
   }
 }
