@@ -1,6 +1,6 @@
 {
   "name": "Calcium 自用 Block List",
-  "version": "1.01",
+  "version": "1.02",
   "homepage": "https://github.com/CalciumC/calciumc.github.io",
   "color": "#08b6fb",
   "data": {
@@ -106,6 +106,58 @@
           "thread": "2538319",
           "page": 27,
           "messageNumber": "666"
+        }
+      }
+    ],
+    "21872": [
+      {
+        "text": "五毛",
+        "reason": "取笑台灣",
+        "url": "https://lihkg.com/thread/2537618/page/1",
+        "date": 1621498773095,
+        "source": {
+          "thread": "2537618",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "331739": [
+      {
+        "text": "五毛",
+        "reason": "抹黑梁義士",
+        "url": "https://lihkg.com/thread/2474252/page/38",
+        "date": 1621491575653,
+        "source": {
+          "thread": "2538511",
+          "page": 1,
+          "messageNumber": "2"
+        }
+      }
+    ],
+    "374209": [
+      {
+        "text": "五毛/假膠",
+        "reason": "扮姜糖口吻, 取笑姜糖話姜濤係黃",
+        "url": "https://lihkg.com/thread/2538710/page/1",
+        "date": 1621493401501,
+        "source": {
+          "thread": "2538710",
+          "page": 1,
+          "messageNumber": "17"
+        }
+      }
+    ],
+    "397108": [
+      {
+        "text": "五毛",
+        "reason": "抹黑梁義士",
+        "url": "https://lihkg.com/thread/2474252/page/38",
+        "date": 1621491632574,
+        "source": {
+          "thread": "2538511",
+          "page": 1,
+          "messageNumber": "6"
         }
       }
     ]
