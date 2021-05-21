@@ -1,6 +1,6 @@
 {
   "name": "Calcium 自用 Block List",
-  "version": "1.02",
+  "version": "1.03",
   "homepage": "https://github.com/CalciumC/calciumc.github.io",
   "color": "#08b6fb",
   "data": {
@@ -186,6 +186,19 @@
           "messageNumber": "1"
         }
       }
-    ]
+    ],
+    "388757": [
+      {
+          "text": "波台引戰狗",
+          "reason": "成日去時事台開post引戰, 實為波台狗",
+          "url": "https://lihkg.com/thread/2537974/page/1",
+          "date": 1621586734286,
+          "source": {
+              "thread": "2499760",
+              "page": 1,
+              "messageNumber": "1"
+          }
+      }
+  ]
   }
 }
