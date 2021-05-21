@@ -160,6 +160,32 @@
           "messageNumber": "6"
         }
       }
+    ],
+    "28938": [
+      {
+        "text": "五毛",
+        "reason": "著名五毛",
+        "url": "https://lihkg.com/thread/2539631/page/1",
+        "date": 1621566541591,
+        "source": {
+          "thread": "2539631",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "31637": [
+      {
+        "text": "試當真hater",
+        "reason": "長期開post攻擊試當真/CapTV",
+        "url": "https://lihkg.com/thread/2531999/page/23",
+        "date": 1621561409634,
+        "source": {
+          "thread": "2533127",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
     ]
   }
 }
