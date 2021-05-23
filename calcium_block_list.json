@@ -1,8 +1,8 @@
 {
   "name": "Calcium 自用 Block List",
-  "version": "1.03",
+  "version": "1.1",
   "homepage": "https://github.com/CalciumC/calciumc.github.io",
-  "color": "#08b6fb",
+  "color": "#ff6a00",
   "data": {
     "185290": [
       {
@@ -112,7 +112,7 @@
     "21872": [
       {
         "text": "五毛",
-        "reason": "取笑台灣",
+        "reason": "對台灣冷嘲熱諷",
         "url": "https://lihkg.com/thread/2537618/page/1",
         "date": 1621498773095,
         "source": {
@@ -189,16 +189,369 @@
     ],
     "388757": [
       {
-          "text": "波台引戰狗",
-          "reason": "成日去時事台開post引戰, 實為波台狗",
-          "url": "https://lihkg.com/thread/2537974/page/1",
-          "date": 1621586734286,
-          "source": {
-              "thread": "2499760",
-              "page": 1,
-              "messageNumber": "1"
-          }
+        "text": "波台引戰狗",
+        "reason": "成日去時事台開post引戰, 實為波台狗",
+        "url": "https://lihkg.com/thread/2537974/page/1",
+        "date": 1621586734286,
+        "source": {
+          "thread": "2499760",
+          "page": 1,
+          "messageNumber": "1"
+        }
       }
-  ]
+    ],
+    "5993": [
+      {
+        "text": "五毛/假膠",
+        "reason": "極端晦氣撚",
+        "url": "https://lihkg.com/thread/2541280/page/1?post=23f7a97da97c479e0ff9624922fc469a298e4d76",
+        "date": 1621677690032,
+        "source": {
+          "thread": "2541280",
+          "page": 1,
+          "messageNumber": "2"
+        }
+      }
+    ],
+    "9392": [
+      {
+        "text": "五毛/假膠",
+        "reason": "對抗爭者冷嘲熱諷",
+        "url": "https://lihkg.com/thread/2539999/page/2",
+        "date": 1621763107482,
+        "source": {
+          "thread": "2543203",
+          "page": 1,
+          "messageNumber": "2"
+        }
+      }
+    ],
+    "12267": [
+      {
+        "text": "五毛",
+        "reason": "\"2021 仲講黃藍\" 五毛言論",
+        "url": "https://lihkg.com/thread/2539407/page/1",
+        "date": 1621600107069,
+        "source": {
+          "thread": "2426407",
+          "page": 2,
+          "messageNumber": "27"
+        }
+      }
+    ],
+    "19527": [
+      {
+        "text": "五毛/假膠",
+        "reason": "假膠行為",
+        "url": "https://lihkg.com/thread/2539407/page/1",
+        "date": 1621599833271,
+        "source": {
+          "thread": "2540282",
+          "page": 1,
+          "messageNumber": "7"
+        }
+      }
+    ],
+    "28068": [
+      {
+        "text": "分化撚",
+        "reason": "強加錯誤黃藍觀念落去藍藝人身上",
+        "url": "https://lihkg.com/thread/2539407/page/1",
+        "date": 1621603439376,
+        "source": {
+          "thread": "2540522",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "29237": [
+      {
+        "text": "波台狗",
+        "reason": "入試當真post搞事",
+        "url": "https://lihkg.com/thread/2531999/page/28",
+        "date": 1621610310150,
+        "source": {
+          "thread": "2531999",
+          "page": 28,
+          "messageNumber": "676"
+        }
+      }
+    ],
+    "33995": [
+      {
+        "text": "五毛/假膠",
+        "reason": "6月4冇得搞晚會 叫Mirror開演唱會有冇得諗",
+        "url": "https://lihkg.com/thread/2536416/page/4",
+        "date": 1621687722381,
+        "source": {
+          "thread": "2542013",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "45713": [
+      {
+        "text": "五毛",
+        "reason": "分化黃圈",
+        "url": "https://lihkg.com/thread/2542419/page/1",
+        "date": 1621745234787,
+        "source": {
+          "thread": "2541904",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "47614": [
+      {
+        "text": "分化撚",
+        "reason": "以mirror分化",
+        "url": "https://lihkg.com/thread/2540562/page/1",
+        "date": 1621657508343,
+        "source": {
+          "thread": "2540562",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "62841": [
+      {
+        "text": "假膠",
+        "reason": "長期喺感情台開假膠post",
+        "url": "https://lihkg.com/thread/2541287/page/1",
+        "date": 1621657573925,
+        "source": {
+          "thread": "2541287",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      },
+      {
+        "text": "五毛/假膠",
+        "reason": "悔辱女抗爭者",
+        "url": "https://lihkg.com/thread/2539999/page/2",
+        "date": 1621763063450,
+        "source": {
+          "thread": "2543203",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "78947": [
+      {
+        "text": "五毛",
+        "reason": "用error黎分化",
+        "url": "https://lihkg.com/thread/2539407/page/1",
+        "date": 1621603931083,
+        "source": {
+          "thread": "2539385",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "80373": [
+      {
+        "text": "五毛/假膠",
+        "reason": "分化",
+        "url": "https://lihkg.com/thread/2541601/page/1?post=c51d1e73533b5cbdefedfc7968d882ed90e1d2ea",
+        "date": 1621677576902,
+        "source": {
+          "thread": "1471057",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      },
+      {
+        "text": "更多",
+        "reason": "",
+        "url": "https://lihkg.com/thread/2541601/page/1?post=c51d1e73533b5cbdefedfc7968d882ed90e1d2ea",
+        "date": 1621677619982,
+        "source": {
+          "thread": "2541601",
+          "page": 6,
+          "messageNumber": "138"
+        }
+      }
+    ],
+    "89182": [
+      {
+        "text": "五毛",
+        "reason": "消極言論, 會員名攻擊攬炒巴",
+        "url": "https://lihkg.com/thread/2539407/page/1",
+        "date": 1621599983447,
+        "source": {
+          "thread": "2540368",
+          "page": 1,
+          "messageNumber": "3"
+        }
+      }
+    ],
+    "106745": [
+      {
+        "text": "假膠",
+        "reason": "抗爭消極言論",
+        "url": "https://lihkg.com/thread/2540648/page/22",
+        "date": 1621612343215,
+        "source": {
+          "thread": "2512441",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "118346": [
+      {
+        "text": "五毛/假膠",
+        "reason": "(前名: Alex_Lawther) 取笑周庭",
+        "url": "https://lihkg.com/thread/2541272/page/1",
+        "date": 1621658531621,
+        "source": {
+          "thread": "2298101",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      },
+      {
+        "text": "更多",
+        "reason": "對周庭及Donald Trump兩個重要手足冷嘲熱諷",
+        "url": "https://lihkg.com/thread/2541272/page/1",
+        "date": 1621658559121,
+        "source": {
+          "thread": "2298104",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "128763": [
+      {
+        "text": "煩膠",
+        "reason": "成日回覆都加一張唔開事嘅圖",
+        "url": "https://lihkg.com/thread/2541951/page/1?post=0c33622c445d568785290712615234b26f45c5fc",
+        "date": 1621688803095,
+        "source": {
+          "thread": "2541951",
+          "page": 2,
+          "messageNumber": "50"
+        }
+      }
+    ],
+    "136226": [
+      {
+        "text": "波台狗",
+        "reason": "試當真hater, 成日都po locker個中信廣告引戰",
+        "url": "https://lihkg.com/thread/2539407/page/1",
+        "date": 1621602761922,
+        "source": {
+          "thread": "2531999",
+          "page": 25,
+          "messageNumber": "616"
+        }
+      }
+    ],
+    "140835": [
+      {
+        "text": "波台狗",
+        "reason": "入試當真post搞事",
+        "url": "https://lihkg.com/thread/2531999/page/28",
+        "date": 1621610327706,
+        "source": {
+          "thread": "2531999",
+          "page": 28,
+          "messageNumber": "677"
+        }
+      }
+    ],
+    "159491": [
+      {
+        "text": "五毛/假膠",
+        "reason": "將mirror同黃藍拉上關係, 再引伸至支持mirror=支持藍店, 分化撚",
+        "url": "https://lihkg.com/thread/2541951/page/1?post=0c33622c445d568785290712615234b26f45c5fc",
+        "date": 1621689139001,
+        "source": {
+          "thread": "2541602",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "237459": [
+      {
+        "text": "五毛/假膠",
+        "reason": "分化",
+        "url": "https://lihkg.com/thread/2541951/page/1?post=0c33622c445d568785290712615234b26f45c5fc",
+        "date": 1621697323007,
+        "source": {
+          "thread": "2541602",
+          "page": 2,
+          "messageNumber": "37"
+        }
+      }
+    ],
+    "260335": [
+      {
+        "text": "五毛/假膠",
+        "reason": "mirror 幾時幫警隊賣埋廣告 ？",
+        "url": "https://lihkg.com/thread/2536416/page/4",
+        "date": 1621687819520,
+        "source": {
+          "thread": "2541968",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "269148": [
+      {
+        "text": "五毛",
+        "reason": "起底見到勁多引戰post",
+        "url": "https://lihkg.com/thread/2539407/page/1",
+        "date": 1621603358733,
+        "source": {
+          "thread": "2540378",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "310914": [
+      {
+        "text": "五毛/假膠",
+        "reason": "多次借意攻擊黃絲",
+        "url": "https://lihkg.com/thread/2539407/page/1",
+        "date": 1621599727275,
+        "source": {
+          "thread": "2510363",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "316590": [
+      {
+        "text": "五毛/假膠",
+        "reason": "極端嘲諷",
+        "url": "https://lihkg.com/thread/2536416/page/4",
+        "date": 1621687871636,
+        "source": {
+          "thread": "2541920",
+          "page": 1,
+          "messageNumber": "2"
+        }
+      }
+    ],
+    "354439": [
+      {
+        "text": "試當真弱智毛",
+        "reason": "教父mode說教 痴線佬",
+        "url": "https://lihkg.com/thread/2542419/page/1",
+        "date": 1621746036311
+      }
+    ]
   }
 }
