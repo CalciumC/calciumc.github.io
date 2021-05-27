@@ -1,6 +1,6 @@
 {
   "name": "Calcium 自用 Block List",
-  "version": "1.1",
+  "version": "1.11",
   "homepage": "https://github.com/CalciumC/calciumc.github.io",
   "color": "#ff6a00",
   "data": {
@@ -352,6 +352,17 @@
           "page": 1,
           "messageNumber": "1"
         }
+      },
+      {
+        "text": "更多",
+        "reason": "彩虹串燒荃灣店廚房火災, 開post取笑",
+        "url": "https://lihkg.com/thread/2545809/page/1",
+        "date": 1622003338827,
+        "source": {
+          "thread": "2545809",
+          "page": 1,
+          "messageNumber": "1"
+        }
       }
     ],
     "80373": [
@@ -551,6 +562,101 @@
         "reason": "教父mode說教 痴線佬",
         "url": "https://lihkg.com/thread/2542419/page/1",
         "date": 1621746036311
+      }
+    ],
+    "7824": [
+      {
+        "text": "試當真hater",
+        "reason": "屈藍, 有圖冇source齋屈, 引戰",
+        "url": "https://lihkg.com/thread/2547449/page/1",
+        "date": 1622079178513,
+        "source": {
+          "thread": "2548157",
+          "page": 1,
+          "messageNumber": "3"
+        }
+      }
+    ],
+    "38904": [
+      {
+        "text": "試當真hater",
+        "reason": "屈藍",
+        "url": "https://lihkg.com/thread/2547449/page/1",
+        "date": 1622079214114,
+        "source": {
+          "thread": "2548157",
+          "page": 1,
+          "messageNumber": "6"
+        }
+      }
+    ],
+    "71657": [
+      {
+        "text": "試當真hater",
+        "reason": "屈藍",
+        "url": "https://lihkg.com/thread/2547449/page/1",
+        "date": 1622079403431,
+        "source": {
+          "thread": "2548157",
+          "page": 2,
+          "messageNumber": "30"
+        }
+      },
+      {
+        "text": "分化撚",
+        "reason": "嘲諷mirror黃藍問題",
+        "url": "https://lihkg.com/thread/2547449/page/1",
+        "date": 1622079450682,
+        "source": {
+          "thread": "2548157",
+          "page": 2,
+          "messageNumber": "30"
+        }
+      }
+    ],
+    "79793": [
+      {
+        "text": "五毛",
+        "reason": "話手足係黑暴",
+        "url": "https://lihkg.com/thread/2547449/page/1",
+        "date": 1622079299157,
+        "source": {
+          "thread": "2545365",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      },
+      {
+        "text": "引戰分化撚",
+        "reason": "日日出post攻擊mirror/viutv",
+        "url": "https://lihkg.com/thread/2547449/page/1",
+        "date": 1622079338822,
+        "source": {
+          "thread": "2534636",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "160193": [
+      {
+        "text": "五毛",
+        "reason": "以一篇\"爆眼女手足疑似離開香港\"新聞, 形容女手足爆眼為連登大炒車",
+        "url": "https://lihkg.com/thread/2544121/page/5",
+        "date": 1621822295915
+      }
+    ],
+    "383871": [
+      {
+        "text": "假膠/弱智",
+        "reason": "抹黑試當真,  睇tvb",
+        "url": "https://lihkg.com/thread/2547449/page/1",
+        "date": 1622079560872,
+        "source": {
+          "thread": "2548157",
+          "page": 3,
+          "messageNumber": "71"
+        }
       }
     ]
   }
