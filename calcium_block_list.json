@@ -1,6 +1,6 @@
 {
   "name": "Calcium 自用 Block List",
-  "version": "1.11",
+  "version": "1.12",
   "homepage": "https://github.com/CalciumC/calciumc.github.io",
   "color": "#ff6a00",
   "data": {
@@ -286,6 +286,17 @@
         "date": 1621687722381,
         "source": {
           "thread": "2542013",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      },
+      {
+        "text": "分化撚",
+        "reason": "先批鬥Mirror 而家批鬥試當真",
+        "url": "https://lihkg.com/thread/2539999/page/2",
+        "date": 1621862114297,
+        "source": {
+          "thread": "2545220",
           "page": 1,
           "messageNumber": "1"
         }
@@ -656,6 +667,101 @@
           "thread": "2548157",
           "page": 3,
           "messageNumber": "71"
+        }
+      }
+    ],
+    "1354": [
+      {
+        "text": "五毛/假膠",
+        "reason": "屈共業redstop係PR",
+        "url": "https://lihkg.com/thread/2539999/page/2",
+        "date": 1621863102786,
+        "source": {
+          "thread": "2545179",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "47658": [
+      {
+        "text": "五毛",
+        "reason": "嘲諷屠龍小隊手足",
+        "url": "https://lihkg.com/thread/2549521/page/1",
+        "date": 1622110458487,
+        "source": {
+          "thread": "2268523",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      },
+      {
+        "text": "更多",
+        "reason": "嘲諷手足黑衫日運動",
+        "url": "https://lihkg.com/thread/2549521/page/1",
+        "date": 1622110490096,
+        "source": {
+          "thread": "2427826",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      },
+      {
+        "text": "更多",
+        "reason": "抹黑攬炒巴",
+        "url": "https://lihkg.com/thread/2549521/page/1",
+        "date": 1622110536026,
+        "source": {
+          "thread": "2232068",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "102835": [
+      {
+        "text": "分化撚",
+        "reason": "鬥黃",
+        "url": "https://lihkg.com/thread/2539999/page/2",
+        "date": 1621767689658
+      }
+    ],
+    "202826": [
+      {
+        "text": "試當真hater",
+        "reason": "修哥hater",
+        "url": "https://lihkg.com/thread/2539999/page/2",
+        "date": 1621861197197,
+        "source": {
+          "thread": "2544686",
+          "page": 3,
+          "messageNumber": "51"
+        }
+      }
+    ],
+    "205043": [
+      {
+        "text": "五毛/假膠",
+        "reason": "以youtuber 分化",
+        "url": "https://lihkg.com/thread/2539999/page/2",
+        "date": 1621862322935,
+        "source": {
+          "thread": "2543614",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "301989": [
+      {
+        "text": "試當真hater",
+        "reason": "locker hater, 成日po中信個廣告出黎屈試當真藍",
+        "url": "https://lihkg.com/thread/2539999/page/2",
+        "date": 1621864027879,
+        "source": {
+          "thread": "2545220",
+          "page": 3,
+          "messageNumber": "64"
         }
       }
     ]
