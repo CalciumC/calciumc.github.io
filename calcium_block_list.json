@@ -1,6 +1,6 @@
 {
-  "name": "Calcium 自用 Block List",
-  "version": "2.01",
+  "name": "Calcium 自用 Label List",
+  "version": "2.11",
   "homepage": "https://github.com/CalciumC/calciumc.github.io",
   "color": "#ff6a00",
   "data": {
@@ -1029,6 +1029,17 @@
           "page": 1,
           "messageNumber": "1"
         }
+      },
+      {
+        "text": "更多",
+        "reason": "仲講緊試當真靠抄連登上位",
+        "url": "https://lihkg.com/category/1",
+        "date": 1622889923605,
+        "source": {
+          "thread": "2561905",
+          "page": 1,
+          "messageNumber": "1"
+        }
       }
     ],
     "332831": [
@@ -1068,6 +1079,249 @@
           "page": 7,
           "messageNumber": "172"
         }
+      },
+      {
+        "text": "支那Youtube Fans",
+        "reason": "分享支那人channel",
+        "url": "https://lihkg.com/thread/2470557/page/17",
+        "date": 1622725688216,
+        "source": {
+          "thread": "2558993",
+          "page": 2,
+          "messageNumber": "46"
+        }
+      }
+    ],
+    "38172": [
+      {
+        "text": "支那Youtube Fans",
+        "reason": "分享支那人channel",
+        "url": "https://lihkg.com/thread/2470557/page/17",
+        "date": 1622725659687,
+        "source": {
+          "thread": "2558993",
+          "page": 2,
+          "messageNumber": "44"
+        }
+      }
+    ],
+    "43061": [
+      {
+        "text": "支那Youtube Fans",
+        "reason": "開po share支那人channel, 叫youtube做油管",
+        "url": "https://lihkg.com/thread/2470557/page/17",
+        "date": 1622725383123,
+        "source": {
+          "thread": "2558993",
+          "page": 1,
+          "messageNumber": "1"
+        },
+        "image": "https://na.cx/i/HvBn7vE.png"
+      }
+    ],
+    "46435": [
+      {
+        "text": "支那Youtube Fans",
+        "reason": "分享支那人channel",
+        "url": "https://lihkg.com/thread/2470557/page/17",
+        "date": 1622725582967,
+        "source": {
+          "thread": "2558993",
+          "page": 1,
+          "messageNumber": "20"
+        }
+      }
+    ],
+    "126183": [
+      {
+        "text": "支那Youtube Fans",
+        "reason": "分享支那人channel",
+        "url": "https://lihkg.com/thread/2470557/page/17",
+        "date": 1622725529717,
+        "source": {
+          "thread": "2558993",
+          "page": 1,
+          "messageNumber": "15"
+        }
+      }
+    ],
+    "143093": [
+      {
+        "text": "支那Youtube Fans",
+        "reason": "支那人channel 王剛fans",
+        "url": "https://lihkg.com/thread/2470557/page/17",
+        "date": 1622725502673,
+        "source": {
+          "thread": "2558993",
+          "page": 1,
+          "messageNumber": "9"
+        }
+      },
+      {
+        "text": "試當真hater",
+        "reason": "出post指責試當真冇表態六四",
+        "url": "https://lihkg.com/thread/2560799/page/1",
+        "date": 1622867187367,
+        "source": {
+          "thread": "2560799",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "178187": [
+      {
+        "text": "試當真Hater",
+        "reason": "串人課金俾試當真",
+        "url": "https://lihkg.com/thread/2561226/page/12",
+        "date": 1622904917790,
+        "source": {
+          "thread": "2561226",
+          "page": 13,
+          "messageNumber": "324"
+        }
+      }
+    ],
+    "222907": [
+      {
+        "text": "五毛",
+        "reason": "多次侮辱示威者",
+        "url": "https://lihkg.com/category/1",
+        "date": 1622903068074,
+        "source": {
+          "thread": "1318028",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "238483": [
+      {
+        "text": "支那Youtube Fans",
+        "reason": "分享支那人channel",
+        "url": "https://lihkg.com/thread/2470557/page/17",
+        "date": 1622725545534,
+        "source": {
+          "thread": "2558993",
+          "page": 1,
+          "messageNumber": "17"
+        }
+      }
+    ],
+    "256952": [
+      {
+        "text": "支那Youtube Fans",
+        "reason": "分享支那人channel",
+        "url": "https://lihkg.com/thread/2470557/page/17",
+        "date": 1622725421441,
+        "source": {
+          "thread": "2558993",
+          "page": 1,
+          "messageNumber": "2"
+        }
+      }
+    ],
+    "266544": [
+      {
+        "text": "支那Youtube Fans",
+        "reason": "分享支那人channel",
+        "url": "https://lihkg.com/thread/2470557/page/17",
+        "date": 1622725561383,
+        "source": {
+          "thread": "2558993",
+          "page": 1,
+          "messageNumber": "16"
+        }
+      }
+    ],
+    "308567": [
+      {
+        "text": "支那Youtube Fans",
+        "reason": "分享支那人channel",
+        "url": "https://lihkg.com/thread/2470557/page/17",
+        "date": 1622725618877,
+        "source": {
+          "thread": "2558993",
+          "page": 2,
+          "messageNumber": "31"
+        }
+      }
+    ],
+    "309558": [
+      {
+        "text": "試當真hater",
+        "reason": "出post指責試當真笑和理非",
+        "url": "https://lihkg.com/thread/2561211/page/1?post=6d90923ec31ce7b6150769a7ea96033d0ff50243",
+        "date": 1622867214433,
+        "source": {
+          "thread": "2561211",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "362737": [
+      {
+        "text": "支那Youtube Fans",
+        "reason": "分享支那人channel",
+        "url": "https://lihkg.com/thread/2470557/page/17",
+        "date": 1622725443033,
+        "source": {
+          "thread": "2558993",
+          "page": 1,
+          "messageNumber": "8"
+        },
+        "image": ""
+      }
+    ],
+    "374180": [
+      {
+        "text": "分化撚",
+        "reason": "六四唔出post, mirror error 試當真都唔係黃",
+        "url": "https://lihkg.com/thread/2560989/page/1",
+        "date": 1622821970287,
+        "source": {
+          "thread": "2560989",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      },
+      {
+        "text": "試當真hater",
+        "reason": "游學修hater",
+        "url": "https://lihkg.com/thread/2560989/page/1?post=a3432a6a331c83a59fb9ab1ed9f8c26da78316de",
+        "date": 1622822265968,
+        "source": {
+          "thread": "2560989",
+          "page": 1,
+          "messageNumber": "7"
+        },
+        "image": "https://na.cx/i/cBm30Vz.png"
+      }
+    ],
+    "384468": [
+      {
+        "text": "五毛/假膠",
+        "reason": "波台狗, 冷嘲熱諷手足",
+        "url": "https://lihkg.com/thread/2560794/page/1?post=cbd5bd62399a891a93a62749e4eaf613cd9761ae",
+        "date": 1622822098717,
+        "source": {
+          "thread": "2560142",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      },
+      {
+        "text": "分化撚",
+        "reason": "193冇出六四post都要公審",
+        "url": "https://lihkg.com/thread/2560794/page/1?post=cbd5bd62399a891a93a62749e4eaf613cd9761ae",
+        "date": 1622822126975,
+        "source": {
+          "thread": "2560794",
+          "page": 1,
+          "messageNumber": "1"
+        },
+        "image": "https://na.cx/i/oTHuWs7.png"
       }
     ]
   }

@@ -1,8 +1,8 @@
 {
     "name": "連登CCTVB愛好者支持區",
-    "version": "1.0",
+    "version": "1.1",
     "homepage": "https://github.com/CalciumC/calciumc.github.io",
-    "color": "#f06969",
+    "color": "#7A84FF",
     "data": {
         "2167": [
             {
@@ -795,6 +795,502 @@
                     "thread": "2533250",
                     "page": 2,
                     "messageNumber": "35"
+                }
+            }
+        ],
+        "2623": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901090821,
+                "source": {
+                    "thread": "2562146",
+                    "page": 2,
+                    "messageNumber": "27"
+                }
+            }
+        ],
+        "7681": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901556779,
+                "source": {
+                    "thread": "2562146",
+                    "page": 4,
+                    "messageNumber": "85"
+                }
+            }
+        ],
+        "9193": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901536599,
+                "source": {
+                    "thread": "2562146",
+                    "page": 1,
+                    "messageNumber": "2"
+                }
+            }
+        ],
+        "11127": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901512907,
+                "source": {
+                    "thread": "2562146",
+                    "page": 4,
+                    "messageNumber": "77"
+                }
+            }
+        ],
+        "19263": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901792562,
+                "source": {
+                    "thread": "2562146",
+                    "page": 7,
+                    "messageNumber": "172"
+                }
+            }
+        ],
+        "24737": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901457482,
+                "source": {
+                    "thread": "2562146",
+                    "page": 3,
+                    "messageNumber": "59"
+                },
+                "image": ""
+            }
+        ],
+        "32145": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901420499,
+                "source": {
+                    "thread": "2562146",
+                    "page": 3,
+                    "messageNumber": "54"
+                }
+            }
+        ],
+        "36132": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901775517,
+                "source": {
+                    "thread": "2562146",
+                    "page": 7,
+                    "messageNumber": "170"
+                }
+            }
+        ],
+        "37976": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901037015,
+                "source": {
+                    "thread": "2562146",
+                    "page": 1,
+                    "messageNumber": "21"
+                }
+            }
+        ],
+        "59121": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901011268,
+                "source": {
+                    "thread": "2562146",
+                    "page": 1,
+                    "messageNumber": "11"
+                }
+            }
+        ],
+        "62073": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901406244,
+                "source": {
+                    "thread": "2562146",
+                    "page": 3,
+                    "messageNumber": "53"
+                }
+            }
+        ],
+        "66702": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901478492,
+                "source": {
+                    "thread": "2562146",
+                    "page": 3,
+                    "messageNumber": "67"
+                }
+            }
+        ],
+        "70988": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901126995,
+                "source": {
+                    "thread": "2562146",
+                    "page": 2,
+                    "messageNumber": "33"
+                }
+            }
+        ],
+        "72354": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901491216,
+                "source": {
+                    "thread": "2562146",
+                    "page": 3,
+                    "messageNumber": "71"
+                }
+            }
+        ],
+        "75100": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901443463,
+                "source": {
+                    "thread": "2562146",
+                    "page": 3,
+                    "messageNumber": "59"
+                }
+            }
+        ],
+        "82262": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901502893,
+                "source": {
+                    "thread": "2562146",
+                    "page": 3,
+                    "messageNumber": "74"
+                }
+            }
+        ],
+        "121270": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901640240,
+                "source": {
+                    "thread": "2562146",
+                    "page": 6,
+                    "messageNumber": "132"
+                },
+                "image": ""
+            }
+        ],
+        "123106": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901349093,
+                "source": {
+                    "thread": "2562146",
+                    "page": 2,
+                    "messageNumber": "39"
+                }
+            }
+        ],
+        "130325": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622900980948,
+                "source": {
+                    "thread": "2562146",
+                    "page": 1,
+                    "messageNumber": "5"
+                }
+            }
+        ],
+        "131526": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901357648,
+                "source": {
+                    "thread": "2562146",
+                    "page": 2,
+                    "messageNumber": "40"
+                }
+            }
+        ],
+        "134268": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901435214,
+                "source": {
+                    "thread": "2562146",
+                    "page": 3,
+                    "messageNumber": "55"
+                }
+            }
+        ],
+        "150678": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901046743,
+                "source": {
+                    "thread": "2562146",
+                    "page": 1,
+                    "messageNumber": "24"
+                }
+            }
+        ],
+        "170160": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901369886,
+                "source": {
+                    "thread": "2562146",
+                    "page": 2,
+                    "messageNumber": "43"
+                }
+            }
+        ],
+        "187876": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901783725,
+                "source": {
+                    "thread": "2562146",
+                    "page": 7,
+                    "messageNumber": "171"
+                }
+            }
+        ],
+        "199590": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901522386,
+                "source": {
+                    "thread": "2562146",
+                    "page": 4,
+                    "messageNumber": "79"
+                }
+            }
+        ],
+        "204710": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901800946,
+                "source": {
+                    "thread": "2562146",
+                    "page": 7,
+                    "messageNumber": "173"
+                }
+            }
+        ],
+        "205303": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901753199,
+                "source": {
+                    "thread": "2562146",
+                    "page": 7,
+                    "messageNumber": "156"
+                }
+            }
+        ],
+        "208109": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901379138,
+                "source": {
+                    "thread": "2562146",
+                    "page": 2,
+                    "messageNumber": "44"
+                }
+            }
+        ],
+        "219266": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901002661,
+                "source": {
+                    "thread": "2562146",
+                    "page": 1,
+                    "messageNumber": "10"
+                }
+            }
+        ],
+        "230770": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901548690,
+                "source": {
+                    "thread": "2562146",
+                    "page": 4,
+                    "messageNumber": "83"
+                }
+            }
+        ],
+        "274722": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901605043,
+                "source": {
+                    "thread": "2562146",
+                    "page": 4,
+                    "messageNumber": "85"
+                }
+            }
+        ],
+        "304345": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901628225,
+                "source": {
+                    "thread": "2562146",
+                    "page": 6,
+                    "messageNumber": "126"
+                }
+            }
+        ],
+        "314915": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901734215,
+                "source": {
+                    "thread": "2562146",
+                    "page": 7,
+                    "messageNumber": "153"
+                }
+            }
+        ],
+        "319874": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901333802,
+                "source": {
+                    "thread": "2562146",
+                    "page": 2,
+                    "messageNumber": "37"
+                }
+            }
+        ],
+        "337986": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901665301,
+                "source": {
+                    "thread": "2562146",
+                    "page": 6,
+                    "messageNumber": "132"
+                }
+            }
+        ],
+        "338154": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901388805,
+                "source": {
+                    "thread": "2562146",
+                    "page": 2,
+                    "messageNumber": "49"
+                }
+            }
+        ],
+        "342597": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622901080118,
+                "source": {
+                    "thread": "2562146",
+                    "page": 2,
+                    "messageNumber": "27"
+                }
+            }
+        ],
+        "393512": [
+            {
+                "text": "睇TVB",
+                "reason": "聲夢傳奇post",
+                "url": "https://lihkg.com/category/1",
+                "date": 1622900993873,
+                "source": {
+                    "thread": "2562146",
+                    "page": 1,
+                    "messageNumber": "8"
                 }
             }
         ]
