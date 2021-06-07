@@ -1,6 +1,6 @@
 {
   "name": "Calcium 自用 Block List",
-  "version": "2.02",
+  "version": "2.01",
   "homepage": "https://github.com/CalciumC/calciumc.github.io",
   "color": "#ff6a00",
   "data": {
@@ -818,7 +818,7 @@
       },
       {
         "text": "更多",
-        "reason": "扮撚完喺福岡做工程，就扮喺東京做IT 福岡係咩環境就乜撚都答唔出 做打手又唔溫下書先 屌你老母淨係識得話多共用account 中共怕外匯流失啊？ 你嘅任務係一星期三個反移民posts？任務失敗就快撚啲死啦",
+        "reason": "扮撚完喺福岡做工程，就扮喺東京做IT\r\n福岡係咩環境就乜撚都答唔出\r\n做打手又唔溫下書先\r\n屌你老母淨係識得話多共用account\r\n中共怕外匯流失啊？\r\n你嘅任務係一星期三個反移民posts？任務失敗就快撚啲死啦",
         "url": "https://lihkg.com/thread/2551358/page/1",
         "date": 1622384062051,
         "source": {
@@ -988,7 +988,8 @@
           "thread": "2557246",
           "page": 1,
           "messageNumber": "22"
-        }
+        },
+        "image": "https://na.cx/i/aDiJHiz.png"
       }
     ],
     "301797": [
@@ -1025,17 +1026,6 @@
         "date": 1622087308276,
         "source": {
           "thread": "2547882",
-          "page": 1,
-          "messageNumber": "1"
-        }
-      },
-      {
-        "text": "更多",
-        "reason": "仲講緊試當真靠抄連登上位",
-        "url": "https://lihkg.com/category/1",
-        "date": 1622889923605,
-        "source": {
-          "thread": "2561905",
           "page": 1,
           "messageNumber": "1"
         }
@@ -1077,17 +1067,6 @@
           "thread": "2555024",
           "page": 7,
           "messageNumber": "172"
-        }
-      },
-      {
-        "text": "支那Youtube Fans",
-        "reason": "分享支那人channel",
-        "url": "https://lihkg.com/thread/2470557/page/17",
-        "date": 1622725688216,
-        "source": {
-          "thread": "2558993",
-          "page": 2,
-          "messageNumber": "46"
         }
       }
     ]
