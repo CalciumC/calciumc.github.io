@@ -913,16 +913,9 @@
         "url": "https://lihkg.com/thread/2542515/page/23",
         "date": 1622518046625,
         "source": {
-          "page": 1
-        }
-      },
-      {
-        "text": "試當真hater",
-        "reason": "指阿慈同ca姐做雞",
-        "url": "https://lihkg.com/thread/2542515/page/23",
-        "date": 1622518136415,
-        "source": {
-          "page": 9
+          "thread": "2428880",
+          "page": 1,
+          "messageNumber": "20"
         }
       }
     ],
