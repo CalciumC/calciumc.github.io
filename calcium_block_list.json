@@ -1,6 +1,6 @@
 {
   "name": "Calcium 自用 Label List",
-  "version": "2.12",
+  "version": "2.13",
   "homepage": "https://github.com/CalciumC/calciumc.github.io",
   "color": "#ff6a00",
   "data": {
@@ -591,9 +591,14 @@
     "354439": [
       {
         "text": "試當真弱智毛",
-        "reason": "教父mode說教 痴線佬",
-        "url": "https://lihkg.com/thread/2542419/page/1",
-        "date": 1621746036311
+        "reason": "教父mode說教 痴線佬 打essay dm阿慈屌佢",
+        "url": "https://lihkg.com/thread/2531999/page/33",
+        "date": 1621746036311,
+        "source": {
+          "thread": "2531999",
+          "page": 33,
+          "messageNumber": "820"
+        }
       }
     ],
     "7824": [
@@ -1232,6 +1237,17 @@
           "page": 1,
           "messageNumber": "2"
         }
+      },
+      {
+        "text": "娛樂台假膠",
+        "reason": "同其他娛樂台假膠圍威喂",
+        "url": "https://lihkg.com/thread/2571223/page/2",
+        "date": 1623513157971,
+        "source": {
+          "thread": "2396805",
+          "page": 1,
+          "messageNumber": "1"
+        }
       }
     ],
     "266544": [
@@ -1421,6 +1437,176 @@
           "thread": "1492245",
           "page": 1,
           "messageNumber": "1"
+        }
+      }
+    ],
+    "19645": [
+      {
+        "text": "假膠",
+        "reason": "感情台假膠, 冇句真",
+        "url": "https://lihkg.com/thread/2571523/page/1",
+        "date": 1623601393044,
+        "source": {
+          "thread": "1781747",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "26232": [
+      {
+        "text": "娛樂台假膠",
+        "reason": "反mirror, 反試當真",
+        "url": "https://lihkg.com/thread/2571223/page/2",
+        "date": 1623512772857,
+        "source": {
+          "thread": "2541804",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "67294": [
+      {
+        "text": "假膠",
+        "reason": "睇TVB, 邊期有邊個紅就開post捧殺攻擊",
+        "url": "https://lihkg.com/thread/2571223/page/2",
+        "date": 1623512439240,
+        "source": {
+          "thread": "2571183",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "67356": [
+      {
+        "text": "試當真弱智毛",
+        "reason": "小學雞言論",
+        "url": "https://lihkg.com/category/1",
+        "date": 1623646051352,
+        "source": {
+          "thread": "2562939",
+          "page": 33,
+          "messageNumber": "823"
+        }
+      }
+    ],
+    "74065": [
+      {
+        "text": "娛樂台假膠",
+        "reason": "邊期有咩人紅就開post捧殺/攻擊, 反試當真, 反mirror",
+        "url": "https://lihkg.com/thread/2571223/page/2",
+        "date": 1623512613362,
+        "source": {
+          "thread": "2570197",
+          "page": 1,
+          "messageNumber": "1"
+        },
+        "image": ""
+      }
+    ],
+    "205928": [
+      {
+        "text": "娛樂台假膠",
+        "reason": "咩人都反",
+        "url": "https://lihkg.com/thread/2571223/page/2",
+        "date": 1623513108674,
+        "source": {
+          "thread": "2570228",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "214644": [
+      {
+        "text": "波台狗",
+        "reason": "193 hater",
+        "url": "https://lihkg.com/thread/2571516/page/2",
+        "date": 1623601215930,
+        "source": {
+          "thread": "2571223",
+          "page": 2,
+          "messageNumber": "26"
+        }
+      }
+    ],
+    "219225": [
+      {
+        "text": "娛樂台假膠",
+        "reason": "邊期有咩人紅就開po帶風向, 反193, 反viu",
+        "url": "https://lihkg.com/thread/2571223/page/2",
+        "date": 1623512729971,
+        "source": {
+          "thread": "2539851",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      }
+    ],
+    "272077": [
+      {
+        "text": "波台/娛樂台假膠",
+        "reason": "反試當真, 反MIRROR",
+        "url": "https://lihkg.com/thread/2571223/page/2",
+        "date": 1623512806444,
+        "source": {
+          "thread": "2569382",
+          "page": 1,
+          "messageNumber": "1"
+        },
+        "image": ""
+      }
+    ],
+    "345051": [
+      {
+        "text": "五毛/假膠",
+        "reason": "悔辱周庭",
+        "url": "https://lihkg.com/thread/2570642/page/1",
+        "date": 1623419643616,
+        "source": {
+          "thread": "2570908",
+          "page": 1,
+          "messageNumber": "1"
+        }
+      },
+      {
+        "text": "娛樂台假膠",
+        "reason": "反193",
+        "url": "https://lihkg.com/thread/2571223/page/2",
+        "date": 1623513191630,
+        "source": {
+          "thread": "2571223",
+          "page": 1,
+          "messageNumber": "5"
+        }
+      }
+    ],
+    "368296": [
+      {
+        "text": "娛樂台假膠",
+        "reason": "邊期有咩人紅就反邊個",
+        "url": "https://lihkg.com/thread/2571223/page/2",
+        "date": 1623512643024,
+        "source": {
+          "thread": "2570197",
+          "page": 1,
+          "messageNumber": "2"
+        },
+        "image": ""
+      }
+    ],
+    "401043": [
+      {
+        "text": "假膠",
+        "reason": "咩人都反",
+        "url": "https://lihkg.com/thread/2571223/page/2",
+        "date": 1623512368318,
+        "source": {
+          "thread": "2571223",
+          "page": 1,
+          "messageNumber": "3"
         }
       }
     ]
