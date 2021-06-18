@@ -1,6 +1,6 @@
 {
     "name": "連登CCTVB愛好者支持區",
-    "version": "1.12",
+    "version": "1.13",
     "homepage": "https://github.com/CalciumC/calciumc.github.io",
     "color": "#7A84FF",
     "data": {
@@ -1605,6 +1605,19 @@
                 "date": 1623671942382,
                 "source": {
                     "thread": "2574023",
+                    "page": 1,
+                    "messageNumber": "1"
+                }
+            }
+        ],
+        "380132": [
+            {
+                "text": "睇TVB",
+                "reason": "撻出愛火花post",
+                "url": "https://lihkg.com/thread/2570078/page/8",
+                "date": 1623386176977,
+                "source": {
+                    "thread": "2568269",
                     "page": 1,
                     "messageNumber": "1"
                 }
