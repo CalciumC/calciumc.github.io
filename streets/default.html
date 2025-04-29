@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Streets Audio</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header {
+      padding: 1rem;
+      background-color: #2c3e50;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    #search-box {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 4px;
+      border: none;
+    }
+
+    #container {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    #street-list {
+      width: 60%;
+      padding: 2rem;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    #map-container {
+      width: 40%;
+      height: 100%;
+      border-left: 1px solid #ccc;
+    }
+
+    #map-frame {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .street {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    .street:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .highlight {
+      background-color: #fff5a3;
+    }
+
+    footer {
+      padding: 1rem;
+      background-color: #ecf0f1;
+      text-align: center;
+    }
+
+    audio {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Street Names Player</h1>
+    <input type="text" id="search-box" placeholder="Search streets..." />
+  </header>
+  <div id="container">
+    <main id="street-list">
+      <!-- Street buttons injected by JS -->
+    </main>
+    <div id="map-container">
+      <iframe
+        id="map-frame"
+        src=""
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </div>
+  <footer>
+    <audio id="audio-player" controls>
+      <source id="audio-source" src="" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+  </footer>
+
+  <script>
+    fetch('streets.json')
+      .then(response => response.json())
+      .then(data => {
+        const list = document.getElementById('street-list');
+        const player = document.getElementById('audio-player');
+        const source = document.getElementById('audio-source');
+        const searchBox = document.getElementById('search-box');
+        const mapFrame = document.getElementById('map-frame');
+
+        const streetElements = [];
+		
+		const iniMap = encodeURIComponent("MCR Move Ltd");
+		mapFrame.src = `https://www.google.com/maps?q=${iniMap}&output=embed&z=15`;
+
+        data.forEach(street => {
+          const div = document.createElement('div');
+          div.className = 'street';
+          div.textContent = street.name;
+          div.onclick = () => {
+            const files = Array.isArray(street.mp3) ? street.mp3 : [street.mp3];
+            if (files.length > 0) {
+              const pick = files[Math.floor(Math.random() * files.length)];
+              source.src = `audio/${pick}`;
+              player.load();
+              player.play();
+            } else {
+              console.warn('No audio listed for', street.name);
+            }
+
+            if (street.map_search) {
+              const encoded = encodeURIComponent(street.map_search);
+              mapFrame.src = `https://www.google.com/maps?q=${encoded}&output=embed&z=15`;
+            }
+          };
+          list.appendChild(div);
+          streetElements.push({ name: street.name, element: div });
+        });
+
+        searchBox.addEventListener('input', () => {
+          const search = searchBox.value.toLowerCase();
+          let matches = [];
+
+          streetElements.forEach(({ name, element }) => {
+            if (name.toLowerCase().includes(search) && search.length > 0) {
+              element.classList.add('highlight');
+              matches.push(element);
+            } else {
+              element.classList.remove('highlight');
+            }
+          });
+
+          if (matches.length === 1) {
+            matches[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        });
+      })
+      .catch(err => console.error('Error loading street data:', err));
+  </script>
+</body>
+</html>
