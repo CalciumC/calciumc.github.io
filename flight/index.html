@@ -180,60 +180,66 @@
     const AERODATABOX_API_KEY = 'a2e2185d14msh9356b6a5b53e093p1fddffjsn4696d33cc2d6'; // Replace with your actual AeroDataBox API key
 
     async function lookupFlight(flightNumber, flightDate) {
-    const today = new Date().toISOString().slice(0, 10);
+  const today = new Date().toISOString().slice(0, 10);
 
-    if (flightDate >= today) {
-        // Future flight: use AeroDataBox API
-        try {
-        const response = await fetch(`https://aerodatabox.p.rapidapi.com/flights/number/${flightNumber}/${flightDate}?withAircraftImage=true`, {
-            method: 'GET',
-            headers: {
-            'X-RapidAPI-Key': AERODATABOX_API_KEY,
-            'X-RapidAPI-Host': 'aerodatabox.p.rapidapi.com'
-            }
-        });
-        const data = await response.json();
-        const flight = data?.flights?.[0]; // adjust based on actual API response
-        
-        if (!flight) return null;
-
-        return {
-            flightNumber,
-            from: flight.departure.iataCode,
-            to: flight.arrival.iataCode,
-            date: flightDate,
-            airline: flight.airline?.name || flight.airline?.iata || '',
-            departureTime: flight.departure.scheduledTimeLocal,
-            arrivalTime: flight.arrival.scheduledTimeLocal
-        };
-        } catch (error) {
-        console.error('AeroDataBox API error:', error);
-        return null;
+  if (flightDate >= today) {
+    // Future flight: use AeroDataBox API
+    try {
+      const response = await fetch(`https://aerodatabox.p.rapidapi.com/flights/number/${flightNumber}/${flightDate}`, {
+        method: 'GET',
+        headers: {
+          'X-RapidAPI-Key': AERODATABOX_API_KEY,
+          'X-RapidAPI-Host': 'aerodatabox.p.rapidapi.com'
         }
-    } else {
-        // Past or today: use AviationStack API
-        try {
-        const response = await fetch(`https://api.aviationstack.com/v1/flights?access_key=${AVIATIONSTACK_API_KEY}&flight_iata=${flightNumber}`);
-        const data = await response.json();
-        // find flight matching the date or fallback first flight
-        const flight = data?.data?.find(f => f.departure.scheduled?.startsWith(flightDate)) || data?.data?.[0];
-        if (!flight) return null;
+      });
+      const flightsData = await response.json();
+      const flight = flightsData?.[0]; // get the first flight from the array
+      if (!flight) return null;
 
-        return {
-            flightNumber,
-            from: flight.departure.iata,
-            to: flight.arrival.iata,
-            date: flight.departure.scheduled?.split('T')[0] || flight.flight_date,
-            airline: flight.airline?.name || '',
-            departureTime: flight.departure.scheduled,
-            arrivalTime: flight.arrival.scheduled
-        };
-        } catch (error) {
-        console.error('AviationStack API error:', error);
-        return null;
-        }
+      return {
+        flightNumber: flight.number,
+        from: flight.departure.airport.iata,
+        to: flight.arrival.airport.iata,
+        date: flightDate,
+        airline: flight.airline?.name || '',
+        departureTime: flight.departure.scheduledTime.local,
+        arrivalTime: flight.arrival.scheduledTime.local,
+        aircraftModel: flight.aircraft?.model || '',
+        coords: [
+          [flight.departure.airport.location.lat, flight.departure.airport.location.lon],
+          [flight.arrival.airport.location.lat, flight.arrival.airport.location.lon]
+        ]
+      };
+    } catch (error) {
+      console.error('AeroDataBox API error:', error);
+      return null;
     }
+  } else {
+    // Past or today: use AviationStack API
+    try {
+      const response = await fetch(`https://api.aviationstack.com/v1/flights?access_key=${AVIATIONSTACK_API_KEY}&flight_iata=${flightNumber}`);
+      const data = await response.json();
+      const flight = data?.data?.find(f => f.departure.scheduled?.startsWith(flightDate)) || data?.data?.[0];
+      if (!flight) return null;
+
+      return {
+        flightNumber: flight.flight.iata || flightNumber,
+        from: flight.departure.iata,
+        to: flight.arrival.iata,
+        date: flight.departure.scheduled?.split('T')[0] || flight.flight_date,
+        airline: flight.airline?.name || '',
+        departureTime: flight.departure.scheduled,
+        arrivalTime: flight.arrival.scheduled,
+        aircraftModel: flight.aircraft?.model || '',
+        coords: null  // You can enhance if you want to add coordinates here too
+      };
+    } catch (error) {
+      console.error('AviationStack API error:', error);
+      return null;
     }
+  }
+}
+
 
     flightForm.onsubmit = async (e) => {
     e.preventDefault();
