@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+  <style>
+    body {
+      max-width: 800px;
+      margin: auto;
+      padding: 1rem;
+    }
+    h1 {
+      text-align: center;
+    }
+    #map {
+      height: 400px;
+      margin-top: 1rem;
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+    form {
+      display: grid;
+      grid-template-columns: 2fr auto;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    ul#flightList {
+      margin-top: 1rem;
+      padding-left: 1rem;
+    }
+  </style>
+  <title>My Flights Tracker</title>
+</head>
+<body>
+  <main>
+    <h1>✈️ My Flights Tracker</h1>
+    <form id="flightForm">
+      <input type="text" placeholder="Flight Number (e.g. BA183)" id="flightNumber" required />
+      <button type="submit">Add</button>
+    </form>
+
+    <div id="map"></div>
+
+    <h2>Flight Log</h2>
+    <ul id="flightList"></ul>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const flightForm = document.getElementById('flightForm');
+    const flightList = document.getElementById('flightList');
+    const map = L.map('map').setView([20, 0], 2);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    let flights = JSON.parse(localStorage.getItem('flights') || '[]');
+
+    function saveFlights() {
+      localStorage.setItem('flights', JSON.stringify(flights));
+    }
+
+    function renderFlights() {
+      flightList.innerHTML = '';
+      flights.forEach((f, i) => {
+        const li = document.createElement('li');
+        li.textContent = `${f.flightNumber}: ${f.from} → ${f.to} (${f.date})`;
+        flightList.appendChild(li);
+
+        if (f.coords) {
+          L.polyline(f.coords, { color: 'blue' }).addTo(map);
+        }
+      });
+    }
+
+    async function getAirportCoords(code) {
+      const response = await fetch(`https://raw.githubusercontent.com/mwgg/Airports/master/airports.json`);
+      const data = await response.json();
+      const airport = Object.values(data).find(a => a.iata === code);
+      return airport ? [airport.lat, airport.lon] : null;
+    }
+
+    async function lookupFlight(flightNumber) {
+      const apiKey = '2482f6676b81992622bbe0d7ee97c0e5'; // Replace with your aviationstack key
+      const response = await fetch(`https://api.aviationstack.com/v1/flights?access_key=${apiKey}&flight_iata=${flightNumber}`);
+      const data = await response.json();
+      const flight = data?.data?.[0];
+      if (!flight) return null;
+
+      return {
+        flightNumber,
+        from: flight.departure.iata,
+        to: flight.arrival.iata,
+        date: flight.departure.scheduled?.split('T')[0] || flight.flight_date
+      };
+    }
+
+    flightForm.onsubmit = async (e) => {
+      e.preventDefault();
+      const flightNumber = document.getElementById('flightNumber').value.trim().toUpperCase();
+
+      const result = await lookupFlight(flightNumber);
+      if (!result) {
+        alert('Flight not found. Try again.');
+        return;
+      }
+
+      const fromCoords = await getAirportCoords(result.from);
+      const toCoords = await getAirportCoords(result.to);
+      const coords = fromCoords && toCoords ? [fromCoords, toCoords] : null;
+
+      const flight = { ...result, coords };
+      flights.push(flight);
+      saveFlights();
+      renderFlights();
+      flightForm.reset();
+    };
+
+    renderFlights();
+  </script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
+</body>
+</html>
