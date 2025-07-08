@@ -11,6 +11,7 @@
       max-width: 800px;
       margin: auto;
       padding: 1rem;
+      position: relative;
     }
     h1 {
       text-align: center;
@@ -28,19 +29,32 @@
       align-items: center;
     }
     .flight-card {
-      background: #f3f3f3;
+      background: #ffffff;
+      border: 1px solid #ccc;
       border-radius: 0.5rem;
       padding: 0.75rem;
       margin-bottom: 0.75rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      font-size: 0.9rem;
+      color: #333;
     }
     .flight-info {
       flex: 1;
     }
     .flight-actions button {
-      margin-left: 0.5rem;
+      margin-left: 0.25rem;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.5rem;
+    }
+    #resetBtn {
+      font-size: 0.85rem;
+      padding: 0.4rem 0.8rem;
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      z-index: 1000;
     }
   </style>
   <title>My Flights Tracker</title>
@@ -54,12 +68,11 @@
       <button type="submit">Add</button>
     </form>
 
-    <button id="resetBtn" style="margin-top: 1rem;">Reset All Flights</button>
-
     <div id="map"></div>
 
     <h2>Flight Log</h2>
     <div id="flightList"></div>
+    <button id="resetBtn">Reset All Flights</button>
   </main>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -76,7 +89,7 @@
     let flights = JSON.parse(localStorage.getItem('flights') || '[]');
 
     function getRandomColor(index) {
-      const colors = ['red', 'blue', 'green', 'purple', 'orange', 'brown', 'teal', 'magenta'];
+      const colors = ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6'];
       return colors[index % colors.length];
     }
 
