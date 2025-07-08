@@ -118,7 +118,7 @@
     const info = document.createElement('div');
     info.className = 'flight-info';
     info.innerHTML = `
-      <strong><a href="flight-details.html?flightNumber=${encodeURIComponent(f.flightNumber)}&date=${encodeURIComponent(f.date)}">${f.flightNumber}</a></strong><br>
+      <strong><a href="details.html?flightNumber=${encodeURIComponent(f.flightNumber)}&date=${encodeURIComponent(f.date)}">${f.flightNumber}</a></strong><br>
       ${f.from} → ${f.to}<br>
       ${f.date}<br>
       Departure: ${depTimeFormatted} - Arrival: ${arrTimeFormatted}<br>
@@ -210,7 +210,9 @@
       const toCoords = await getAirportCoords(result.to);
       const coords = fromCoords && toCoords ? [fromCoords, toCoords] : null;
 
-      const flight = { ...result, date, coords };
+      // Include departureTime and arrivalTime from API result
+      const flight = { ...result, date, coords, departureTime: result.departureTime, arrivalTime: result.arrivalTime };
+      
       flights.push(flight);
       saveFlights();
       renderFlights();
