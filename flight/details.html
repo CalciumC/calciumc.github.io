@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+  <title>Flight Details</title>
+  <style>
+    body {
+      max-width: 700px;
+      margin: auto;
+      padding: 1rem;
+    }
+    .details {
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      background: #f9f9f9;
+    }
+    form {
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Flight Details</h1>
+
+  <div class="details" id="flightInfo">
+    <p><strong>Airline:</strong> <span id="airline"></span></p>
+    <p><strong>From:</strong> <span id="from"></span> @ <span id="departureTime"></span></p>
+    <p><strong>To:</strong> <span id="to"></span> @ <span id="arrivalTime"></span></p>
+    <p><strong>Flight Duration:</strong> <span id="duration"></span></p>
+    <p><strong>Distance:</strong> <span id="distance"></span></p>
+    <p><strong>Overnight Flight:</strong> <span id="overnight"></span></p>
+    <p><strong>Aircraft:</strong> <span id="aircraft"></span></p>
+  </div>
+
+  <form id="extraForm">
+    <h2>Add Your Info</h2>
+    <label>
+      Booking Code:
+      <input type="text" id="bookingCode" name="bookingCode" />
+    </label>
+    <label>
+      Seat Number:
+      <input type="text" id="seatNumber" name="seatNumber" />
+    </label>
+    <button type="submit">Save</button>
+  </form>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const flightNumber = params.get('flightNumber');
+    const date = params.get('date');
+
+    async function loadFlight() {
+      const flights = JSON.parse(localStorage.getItem('flights') || '[]');
+      const flight = flights.find(f => f.flightNumber === flightNumber && f.date === date);
+      if (!flight) {
+        document.body.innerHTML = '<p>Flight not found</p>';
+        return;
+      }
+
+      // Simulated full data (or replace with real API logic if available)
+      const mockDetails = {
+        departureTime: '2025-08-01T22:30:00',
+        arrivalTime: '2025-08-02T06:15:00',
+        durationMinutes: 465,
+        distanceKm: 5850,
+        aircraft: 'Boeing 787 Dreamliner'
+      };
+
+      document.getElementById('airline').textContent = flight.airline;
+      document.getElementById('from').textContent = flight.from;
+      document.getElementById('to').textContent = flight.to;
+      document.getElementById('departureTime').textContent = new Date(mockDetails.departureTime).toLocaleString();
+      document.getElementById('arrivalTime').textContent = new Date(mockDetails.arrivalTime).toLocaleString();
+
+      const hours = Math.floor(mockDetails.durationMinutes / 60);
+      const mins = mockDetails.durationMinutes % 60;
+      document.getElementById('duration').textContent = `${hours}h ${mins}m`;
+      document.getElementById('distance').textContent = `${mockDetails.distanceKm} km`;
+
+      const dep = new Date(mockDetails.departureTime);
+      const arr = new Date(mockDetails.arrivalTime);
+      document.getElementById('overnight').textContent = dep.getDate() !== arr.getDate() ? 'Yes' : 'No';
+
+      document.getElementById('aircraft').textContent = mockDetails.aircraft;
+
+      // Populate user inputs if available
+      if (flight.bookingCode) document.getElementById('bookingCode').value = flight.bookingCode;
+      if (flight.seatNumber) document.getElementById('seatNumber').value = flight.seatNumber;
+
+      document.getElementById('extraForm').onsubmit = (e) => {
+        e.preventDefault();
+        flight.bookingCode = document.getElementById('bookingCode').value;
+        flight.seatNumber = document.getElementById('seatNumber').value;
+
+        const idx = flights.findIndex(f => f.flightNumber === flightNumber && f.date === date);
+        if (idx !== -1) {
+          flights[idx] = flight;
+          localStorage.setItem('flights', JSON.stringify(flights));
+          alert('Saved!');
+        }
+      };
+    }
+
+    loadFlight();
+  </script>
+</body>
+</html>

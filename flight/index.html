@@ -51,11 +51,14 @@
     #resetBtn {
       font-size: 0.85rem;
       padding: 0.4rem 0.8rem;
-      position: fixed;
-      bottom: 1rem;
-      right: 1rem;
-      z-index: 1000;
+      position: static; /* changed from fixed */
+      margin-top: 1rem;
+      display: inline-block;
     }
+
+    main > button#resetBtn {
+    float: right;
+  }
   </style>
   <title>My Flights Tracker</title>
 </head>
@@ -98,64 +101,75 @@
     }
 
     function renderFlights() {
-      flightList.innerHTML = '';
-      map.eachLayer(layer => {
-        if (layer instanceof L.Polyline) map.removeLayer(layer);
-      });
+  flightList.innerHTML = '';
+  map.eachLayer(layer => {
+    if (layer instanceof L.Polyline) map.removeLayer(layer);
+  });
 
-      const sortedFlights = [...flights].sort((a, b) => new Date(a.date) - new Date(b.date));
+  const sortedFlights = [...flights].sort((a, b) => new Date(a.date) - new Date(b.date));
 
-      sortedFlights.forEach((f, i) => {
-        const card = document.createElement('div');
-        card.className = 'flight-card';
+  sortedFlights.forEach((f, i) => {
+    const card = document.createElement('div');
+    card.className = 'flight-card';
 
-        const info = document.createElement('div');
-        info.className = 'flight-info';
-        info.innerHTML = `<strong>${f.flightNumber}</strong><br>${f.from} → ${f.to}<br>${f.date}<br>${f.airline || ''}`;
+    const depTimeFormatted = f.departureTime ? new Date(f.departureTime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}) : '';
+    const arrTimeFormatted = f.arrivalTime ? new Date(f.arrivalTime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}) : '';
 
-        const actions = document.createElement('div');
-        actions.className = 'flight-actions';
+    const info = document.createElement('div');
+    info.className = 'flight-info';
+    info.innerHTML = `
+      <strong><a href="flight-details.html?flightNumber=${encodeURIComponent(f.flightNumber)}&date=${encodeURIComponent(f.date)}">${f.flightNumber}</a></strong><br>
+      ${f.from} → ${f.to}<br>
+      ${f.date}<br>
+      Departure: ${depTimeFormatted} - Arrival: ${arrTimeFormatted}<br>
+      ${f.airline || ''}
+    `;
 
-        const editBtn = document.createElement('button');
-        editBtn.textContent = 'Edit';
-        editBtn.onclick = () => {
-          const newDate = prompt('Edit flight date:', f.date);
-          if (newDate) {
-            flights[flights.findIndex(fl => fl.flightNumber === f.flightNumber && fl.date === f.date)] = { ...f, date: newDate };
-            saveFlights();
-            renderFlights();
-          }
-        };
+    // ... your existing buttons code ...
+    
+    const actions = document.createElement('div');
+    actions.className = 'flight-actions';
 
-        const removeBtn = document.createElement('button');
-        removeBtn.textContent = 'Remove';
-        removeBtn.onclick = () => {
-          if (confirm('Are you sure you want to delete this flight?')) {
-            flights = flights.filter(fl => !(fl.flightNumber === f.flightNumber && fl.date === f.date));
-            saveFlights();
-            renderFlights();
-          }
-        };
+    const editBtn = document.createElement('button');
+    editBtn.textContent = 'Edit';
+    editBtn.onclick = () => {
+      const newDate = prompt('Edit flight date:', f.date);
+      if (newDate) {
+        flights[flights.findIndex(fl => fl.flightNumber === f.flightNumber && fl.date === f.date)] = { ...f, date: newDate };
+        saveFlights();
+        renderFlights();
+      }
+    };
 
-        actions.appendChild(editBtn);
-        actions.appendChild(removeBtn);
-        card.appendChild(info);
-        card.appendChild(actions);
-        flightList.appendChild(card);
+    const removeBtn = document.createElement('button');
+    removeBtn.textContent = 'Remove';
+    removeBtn.onclick = () => {
+      if (confirm('Are you sure you want to delete this flight?')) {
+        flights = flights.filter(fl => !(fl.flightNumber === f.flightNumber && fl.date === f.date));
+        saveFlights();
+        renderFlights();
+      }
+    };
 
-        if (f.coords) {
-          const polyline = L.polyline(f.coords, {
-            color: getRandomColor(i),
-            weight: 4
-          }).addTo(map);
+    actions.appendChild(editBtn);
+    actions.appendChild(removeBtn);
+    card.appendChild(info);
+    card.appendChild(actions);
+    flightList.appendChild(card);
 
-          polyline.bindTooltip(
-            `${f.flightNumber}<br>${f.from} → ${f.to}<br>${f.date}<br>${f.airline || ''}`,
-            { permanent: false, sticky: true, direction: 'top' }
-          );
-        }
-      });
+    if (f.coords) {
+      const polyline = L.polyline(f.coords, {
+        color: getRandomColor(i),
+        weight: 4
+      }).addTo(map);
+
+      polyline.bindTooltip(
+        `${f.flightNumber}<br>${f.from} → ${f.to}<br>${f.date}<br>${f.airline || ''}`,
+        { permanent: false, sticky: true, direction: 'top' }
+      );
     }
+  });
+}
 
     async function getAirportCoords(code) {
       const response = await fetch(`https://raw.githubusercontent.com/mwgg/Airports/master/airports.json`);
