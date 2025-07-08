@@ -23,13 +23,22 @@
     }
     form {
       display: grid;
-      grid-template-columns: 2fr auto;
+      grid-template-columns: 2fr 1fr auto;
       gap: 0.5rem;
       align-items: center;
     }
     ul#flightList {
       margin-top: 1rem;
       padding-left: 1rem;
+    }
+    .flight-entry {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .flight-actions button {
+      margin-left: 0.5rem;
     }
   </style>
   <title>My Flights Tracker</title>
@@ -39,8 +48,11 @@
     <h1>✈️ My Flights Tracker</h1>
     <form id="flightForm">
       <input type="text" placeholder="Flight Number (e.g. BA183)" id="flightNumber" required />
+      <input type="date" id="flightDate" />
       <button type="submit">Add</button>
     </form>
+
+    <button id="resetBtn" style="margin-top: 1rem;">Reset All Flights</button>
 
     <div id="map"></div>
 
@@ -52,6 +64,7 @@
   <script>
     const flightForm = document.getElementById('flightForm');
     const flightList = document.getElementById('flightList');
+    const resetBtn = document.getElementById('resetBtn');
     const map = L.map('map').setView([20, 0], 2);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -60,19 +73,67 @@
 
     let flights = JSON.parse(localStorage.getItem('flights') || '[]');
 
+    function getRandomColor(index) {
+      const colors = ['red', 'blue', 'green', 'purple', 'orange', 'brown', 'teal', 'magenta'];
+      return colors[index % colors.length];
+    }
+
     function saveFlights() {
       localStorage.setItem('flights', JSON.stringify(flights));
     }
 
     function renderFlights() {
       flightList.innerHTML = '';
+      map.eachLayer(layer => {
+        if (layer instanceof L.Polyline) map.removeLayer(layer);
+      });
+
       flights.forEach((f, i) => {
         const li = document.createElement('li');
-        li.textContent = `${f.flightNumber}: ${f.from} → ${f.to} (${f.date})`;
+        const div = document.createElement('div');
+        div.className = 'flight-entry';
+        div.innerHTML = `<span>${f.flightNumber}: ${f.from} → ${f.to} (${f.date})</span>`;
+
+        const actions = document.createElement('span');
+        actions.className = 'flight-actions';
+
+        const editBtn = document.createElement('button');
+        editBtn.textContent = 'Edit';
+        editBtn.onclick = () => {
+          const newDate = prompt('Edit flight date:', f.date);
+          if (newDate) {
+            flights[i].date = newDate;
+            saveFlights();
+            renderFlights();
+          }
+        };
+
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = 'Remove';
+        removeBtn.onclick = () => {
+          if (confirm('Are you sure you want to delete this flight?')) {
+            flights.splice(i, 1);
+            saveFlights();
+            renderFlights();
+          }
+        };
+
+        actions.appendChild(editBtn);
+        actions.appendChild(removeBtn);
+        div.appendChild(actions);
+        li.appendChild(div);
         flightList.appendChild(li);
 
         if (f.coords) {
-          L.polyline(f.coords, { color: 'blue' }).addTo(map);
+          const polyline = L.polyline(f.coords, {
+            color: getRandomColor(i),
+            weight: 4
+          }).addTo(map);
+
+          polyline.bindTooltip(
+            `${f.flightNumber}<br>${f.from} → ${f.to}<br>${f.date}`,
+            { permanent: false, sticky: true, direction: 'top' }
+          );
         }
       });
     }
@@ -95,13 +156,15 @@
         flightNumber,
         from: flight.departure.iata,
         to: flight.arrival.iata,
-        date: flight.departure.scheduled?.split('T')[0] || flight.flight_date
+        date: flight.departure.scheduled?.split('T')[0] || flight.flight_date,
+        airline: flight.airline?.name || ''
       };
     }
 
     flightForm.onsubmit = async (e) => {
       e.preventDefault();
       const flightNumber = document.getElementById('flightNumber').value.trim().toUpperCase();
+      const userDate = document.getElementById('flightDate').value;
 
       const result = await lookupFlight(flightNumber);
       if (!result) {
@@ -109,15 +172,24 @@
         return;
       }
 
+      const date = userDate || result.date;
       const fromCoords = await getAirportCoords(result.from);
       const toCoords = await getAirportCoords(result.to);
       const coords = fromCoords && toCoords ? [fromCoords, toCoords] : null;
 
-      const flight = { ...result, coords };
+      const flight = { ...result, date, coords };
       flights.push(flight);
       saveFlights();
       renderFlights();
       flightForm.reset();
+    };
+
+    resetBtn.onclick = () => {
+      if (confirm('Are you sure you want to clear all stored flight records?')) {
+        localStorage.removeItem('flights');
+        flights = [];
+        renderFlights();
+      }
     };
 
     renderFlights();
