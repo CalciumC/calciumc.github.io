@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,21 +14,25 @@
       padding: 1rem;
       position: relative;
     }
+
     h1 {
       text-align: center;
     }
+
     #map {
       height: 400px;
       margin-top: 1rem;
       border-radius: 0.5rem;
       overflow: hidden;
     }
+
     form {
       display: grid;
       grid-template-columns: 2fr 1fr auto;
       gap: 0.5rem;
       align-items: center;
     }
+
     .flight-card {
       background: #ffffff;
       border: 1px solid #ccc;
@@ -40,28 +45,33 @@
       font-size: 0.9rem;
       color: #333;
     }
+
     .flight-info {
       flex: 1;
     }
+
     .flight-actions button {
       margin-left: 0.25rem;
       font-size: 0.8rem;
       padding: 0.25rem 0.5rem;
     }
+
     #resetBtn {
       font-size: 0.85rem;
       padding: 0.4rem 0.8rem;
-      position: static; /* changed from fixed */
+      position: static;
+      /* changed from fixed */
       margin-top: 1rem;
       display: inline-block;
     }
 
-    main > button#resetBtn {
-    float: right;
-  }
+    main>button#resetBtn {
+      float: right;
+    }
   </style>
   <title>My Flights Tracker</title>
 </head>
+
 <body>
   <main>
     <h1>✈️ My Flights Tracker</h1>
@@ -86,34 +96,34 @@
     const map = L.map('map').setView([20, 0], 2);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
+      attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
     let flights = JSON.parse(localStorage.getItem('flights') || '[]');
 
     function getRandomColor(index) {
-    const colors = ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6'];
-    return colors[index % colors.length];
+      const colors = ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6'];
+      return colors[index % colors.length];
     }
 
     function saveFlights() {
-    localStorage.setItem('flights', JSON.stringify(flights));
+      localStorage.setItem('flights', JSON.stringify(flights));
     }
 
     function renderFlights() {
-    flightList.innerHTML = '';
-    map.eachLayer(layer => {
+      flightList.innerHTML = '';
+      map.eachLayer(layer => {
         if (layer instanceof L.Polyline) map.removeLayer(layer);
-    });
+      });
 
-    const sortedFlights = [...flights].sort((a, b) => new Date(a.date) - new Date(b.date));
+      const sortedFlights = [...flights].sort((a, b) => new Date(a.date) - new Date(b.date));
 
-    sortedFlights.forEach((f, i) => {
+      sortedFlights.forEach((f, i) => {
         const card = document.createElement('div');
         card.className = 'flight-card';
 
-        const depTimeFormatted = f.departureTime ? new Date(f.departureTime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}) : '';
-        const arrTimeFormatted = f.arrivalTime ? new Date(f.arrivalTime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}) : '';
+        const depTimeFormatted = f.departureTime ? new Date(f.departureTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+        const arrTimeFormatted = f.arrivalTime ? new Date(f.arrivalTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
 
         const info = document.createElement('div');
         info.className = 'flight-info';
@@ -131,22 +141,22 @@
         const editBtn = document.createElement('button');
         editBtn.textContent = 'Edit';
         editBtn.onclick = () => {
-        const newDate = prompt('Edit flight date:', f.date);
-        if (newDate) {
+          const newDate = prompt('Edit flight date:', f.date);
+          if (newDate) {
             flights[flights.findIndex(fl => fl.flightNumber === f.flightNumber && fl.date === f.date)] = { ...f, date: newDate };
             saveFlights();
             renderFlights();
-        }
+          }
         };
 
         const removeBtn = document.createElement('button');
         removeBtn.textContent = 'Remove';
         removeBtn.onclick = () => {
-        if (confirm('Are you sure you want to delete this flight?')) {
+          if (confirm('Are you sure you want to delete this flight?')) {
             flights = flights.filter(fl => !(fl.flightNumber === f.flightNumber && fl.date === f.date));
             saveFlights();
             renderFlights();
-        }
+          }
         };
 
         actions.appendChild(editBtn);
@@ -156,139 +166,113 @@
         flightList.appendChild(card);
 
         if (f.coords) {
-        const polyline = L.polyline(f.coords, {
+          const polyline = L.polyline(f.coords, {
             color: getRandomColor(i),
             weight: 4
-        }).addTo(map);
+          }).addTo(map);
 
-        polyline.bindTooltip(
+          polyline.bindTooltip(
             `${f.flightNumber}<br>${f.from} → ${f.to}<br>${f.date}<br>${f.airline || ''}`,
             { permanent: false, sticky: true, direction: 'top' }
-        );
+          );
         }
-    });
+      });
     }
 
     async function getAirportCoords(code) {
-    const response = await fetch(`https://raw.githubusercontent.com/mwgg/Airports/master/airports.json`);
-    const data = await response.json();
-    const airport = Object.values(data).find(a => a.iata === code);
-    return airport ? [airport.lat, airport.lon] : null;
+      const response = await fetch(`https://raw.githubusercontent.com/mwgg/Airports/master/airports.json`);
+      const data = await response.json();
+      const airport = Object.values(data).find(a => a.iata === code);
+      return airport ? [airport.lat, airport.lon] : null;
     }
 
     const AVIATIONSTACK_API_KEY = '2482f6676b81992622bbe0d7ee97c0e5';
     const AERODATABOX_API_KEY = 'a2e2185d14msh9356b6a5b53e093p1fddffjsn4696d33cc2d6'; // Replace with your actual AeroDataBox API key
 
     async function lookupFlight(flightNumber, flightDate) {
-  const today = new Date().toISOString().slice(0, 10);
+      try {
+        const response = await fetch(`https://aerodatabox.p.rapidapi.com/flights/number/${flightNumber}/${flightDate}`, {
+          method: 'GET',
+          headers: {
+            'X-RapidAPI-Key': AERODATABOX_API_KEY,
+            'X-RapidAPI-Host': 'aerodatabox.p.rapidapi.com'
+          }
+        });
+        const flightsData = await response.json();
+        const flight = flightsData?.[0];
+        if (!flight) return null;
 
-  if (flightDate >= today) {
-    // Future flight: use AeroDataBox API
-    try {
-      const response = await fetch(`https://aerodatabox.p.rapidapi.com/flights/number/${flightNumber}/${flightDate}`, {
-        method: 'GET',
-        headers: {
-          'X-RapidAPI-Key': AERODATABOX_API_KEY,
-          'X-RapidAPI-Host': 'aerodatabox.p.rapidapi.com'
-        }
-      });
-      const flightsData = await response.json();
-      const flight = flightsData?.[0]; // get the first flight from the array
-      if (!flight) return null;
-
-      return {
-        flightNumber: flight.number,
-        from: flight.departure.airport.iata,
-        to: flight.arrival.airport.iata,
-        date: flightDate,
-        airline: flight.airline?.name || '',
-        departureTime: flight.departure.scheduledTime.local,
-        arrivalTime: flight.arrival.scheduledTime.local,
-        aircraftModel: flight.aircraft?.model || '',
-        coords: [
-          [flight.departure.airport.location.lat, flight.departure.airport.location.lon],
-          [flight.arrival.airport.location.lat, flight.arrival.airport.location.lon]
-        ]
-      };
-    } catch (error) {
-      console.error('AeroDataBox API error:', error);
-      return null;
+        return {
+          flightNumber: flight.number,
+          from: flight.departure.airport.iata,
+          to: flight.arrival.airport.iata,
+          date: flight.departure.scheduledTime.local.split(' ')[0],
+          airline: flight.airline?.name || '',
+          departureTime: flight.departure.scheduledTime.local,
+          arrivalTime: flight.arrival.scheduledTime.local,
+          departureTimeZone: flight.departure.airport.timeZone,
+          arrivalTimeZone: flight.arrival.airport.timeZone,
+          aircraftModel: flight.aircraft?.model || '',
+          distanceKm: flight.greatCircleDistance.km,
+          coords: [
+            [flight.departure.airport.location.lat, flight.departure.airport.location.lon],
+            [flight.arrival.airport.location.lat, flight.arrival.airport.location.lon]
+          ]
+        };
+      } catch (e) {
+        console.error('AeroDataBox error', e);
+        return null;
+      }
     }
-  } else {
-    // Past or today: use AviationStack API
-    try {
-      const response = await fetch(`https://api.aviationstack.com/v1/flights?access_key=${AVIATIONSTACK_API_KEY}&flight_iata=${flightNumber}`);
-      const data = await response.json();
-      const flight = data?.data?.find(f => f.departure.scheduled?.startsWith(flightDate)) || data?.data?.[0];
-      if (!flight) return null;
-
-      return {
-        flightNumber: flight.flight.iata || flightNumber,
-        from: flight.departure.iata,
-        to: flight.arrival.iata,
-        date: flight.departure.scheduled?.split('T')[0] || flight.flight_date,
-        airline: flight.airline?.name || '',
-        departureTime: flight.departure.scheduled,
-        arrivalTime: flight.arrival.scheduled,
-        aircraftModel: flight.aircraft?.model || '',
-        coords: null  // You can enhance if you want to add coordinates here too
-      };
-    } catch (error) {
-      console.error('AviationStack API error:', error);
-      return null;
-    }
-  }
-}
-
 
     flightForm.onsubmit = async (e) => {
-    e.preventDefault();
-    const flightNumber = document.getElementById('flightNumber').value.trim().toUpperCase();
-    let userDate = document.getElementById('flightDate').value;
+      e.preventDefault();
+      const flightNumber = document.getElementById('flightNumber').value.trim().toUpperCase();
+      let userDate = document.getElementById('flightDate').value;
 
-    if (!userDate) {
+      if (!userDate) {
         // if no date provided, fallback to today
         userDate = new Date().toISOString().slice(0, 10);
-    }
+      }
 
-    const result = await lookupFlight(flightNumber, userDate);
-    if (!result) {
+      const result = await lookupFlight(flightNumber, userDate);
+      if (!result) {
         alert('Flight not found or API error. You can still add it manually.');
         // fallback: save minimal flight with user input data only
         const minimalFlight = {
-        flightNumber,
-        from: '',
-        to: '',
-        date: userDate,
-        airline: '',
-        departureTime: '',
-        arrivalTime: '',
-        coords: null
+          flightNumber,
+          from: '',
+          to: '',
+          date: userDate,
+          airline: '',
+          departureTime: '',
+          arrivalTime: '',
+          coords: null
         };
         flights.push(minimalFlight);
         saveFlights();
         renderFlights();
         flightForm.reset();
         return;
-    }
+      }
 
-    const fromCoords = await getAirportCoords(result.from);
-    const toCoords = await getAirportCoords(result.to);
-    const coords = fromCoords && toCoords ? [fromCoords, toCoords] : null;
+      const fromCoords = await getAirportCoords(result.from);
+      const toCoords = await getAirportCoords(result.to);
+      const coords = fromCoords && toCoords ? [fromCoords, toCoords] : null;
 
-    const flight = { ...result, coords };
-    flights.push(flight);
-    saveFlights();
-    renderFlights();
-    flightForm.reset();
+      const flight = { ...result, coords };
+      flights.push(flight);
+      saveFlights();
+      renderFlights();
+      flightForm.reset();
     };
 
     resetBtn.onclick = () => {
-    if (confirm('Are you sure you want to clear all stored flight records?')) {
+      if (confirm('Are you sure you want to clear all stored flight records?')) {
         localStorage.removeItem('flights');
         flights = [];
         renderFlights();
-    }
+      }
     };
 
     renderFlights();
@@ -301,4 +285,5 @@
     }
   </script>
 </body>
+
 </html>
