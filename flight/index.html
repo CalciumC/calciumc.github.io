@@ -100,9 +100,13 @@
       font-size: small;
     } 
 
-    h2 span { 
+    h3 span { 
         background:#fff; 
         padding:0 10px; 
+    }
+
+    dialog {
+      max-width: 500px;
     }
   </style>
   <title>My Flights Tracker</title>
@@ -123,6 +127,7 @@
     <h2>Flight Log</h2>
     <div id="flightList"></div>
     <button id="resetBtn">Reset All Flights</button>
+    <button id="manualInsertBtn">Add Historical Flight</button>
   </main>
   <dialog id="manualModal">
     <article>
