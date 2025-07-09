@@ -167,7 +167,7 @@
     </article>
   </dialog>
 
-  <div class="version">v1.0.2</div>
+  <div class="version">v1.0.3</div>
   <div style="margin-top: 1rem; display: flex; gap: 1rem;">
     <button id="exportBtn">Export Flights</button>
     <button id="importBtn">Import Flights</button>
@@ -571,6 +571,14 @@
         departureTimeZone: null,
         arrivalTimeZone: null,
       };
+
+      document.getElementById('manualFlightNumber').addEventListener('blur', () => {
+      let val = manualFlightNumber.value.trim().toUpperCase();
+      const match = val.match(/^([A-Z]{2})(\d{1,4})$/);
+      if (match) {
+        manualFlightNumber.value = `${match[1]} ${match[2]}`;
+      }
+    });
 
       const fromCoords = await getAirportCoords(flight.from);
       const toCoords = await getAirportCoords(flight.to);
