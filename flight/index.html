@@ -124,12 +124,33 @@
     <div id="flightList"></div>
     <button id="resetBtn">Reset All Flights</button>
   </main>
+  <dialog id="manualModal">
+    <article>
+      <header><strong>Manual Flight Entry</strong></header>
+      <form id="manualForm">
+        <label>Flight Number <input type="text" id="manualFlightNumber" required></label>
+        <label>From (IATA) <input type="text" id="manualFrom" required></label>
+        <label>To (IATA) <input type="text" id="manualTo" required></label>
+        <label>Date <input type="date" id="manualDate" required></label>
+        <label>Airline <input type="text" id="manualAirline"></label>
+        <label>Departure Time (local) <input type="datetime-local" id="manualDepTime"></label>
+        <label>Arrival Time (local) <input type="datetime-local" id="manualArrTime"></label>
+        <footer>
+          <button type="submit">Add Flight</button>
+          <button type="button" onclick="manualModal.close()">Cancel</button>
+        </footer>
+      </form>
+    </article>
+  </dialog>
+
   <div class="version">v1.0.2</div>
   <div style="margin-top: 1rem; display: flex; gap: 1rem;">
     <button id="exportBtn">Export Flights</button>
     <button id="importBtn">Import Flights</button>
     <input type="file" id="importFile" accept=".json" style="display: none;" />
   </div>
+
+
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     const flightForm = document.getElementById('flightForm');
@@ -493,6 +514,30 @@
       renderFlights();
     };
 
+    document.getElementById('manualInsertBtn').onclick = () => manualModal.showModal();
+
+    document.getElementById('manualForm').onsubmit = async (e) => {
+      e.preventDefault();
+      const flight = {
+        flightNumber: manualFlightNumber.value.trim().toUpperCase(),
+        from: manualFrom.value.trim().toUpperCase(),
+        to: manualTo.value.trim().toUpperCase(),
+        date: manualDate.value,
+        airline: manualAirline.value.trim(),
+        departureTime: manualDepTime.value,
+        arrivalTime: manualArrTime.value,
+        coords: null
+      };
+
+      const fromCoords = await getAirportCoords(flight.from);
+      const toCoords = await getAirportCoords(flight.to);
+      if (fromCoords && toCoords) flight.coords = [fromCoords, toCoords];
+
+      flights.push(flight);
+      saveFlights();
+      renderFlights();
+      manualModal.close();
+    };
   </script>
 
   <script>
