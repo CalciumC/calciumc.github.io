@@ -139,6 +139,7 @@
       <input type="text" placeholder="Flight Number (e.g. BA183)" id="flightNumber" required />
       <input type="date" id="flightDate" />
       <button type="submit">Add</button>
+      <button type="button" id="manualInsertBtn">Add Historical Flight</button>
     </form>
 
     <div id="map"></div>
@@ -146,7 +147,6 @@
     <h2>Flight Log</h2>
     <div id="flightList"></div>
     <button id="resetBtn">Reset All Flights</button>
-    <button id="manualInsertBtn">Add Historical Flight</button>
   </main>
   <dialog id="manualModal">
     <article>
@@ -539,6 +539,14 @@
     };
 
     document.getElementById('manualInsertBtn').onclick = () => manualModal.showModal();
+
+    document.getElementById('manualDate').addEventListener('change', () => {
+      const date = document.getElementById('manualDate').value;
+      if (date) {
+        document.getElementById('manualDepTime').value = date + 'T00:00';
+        document.getElementById('manualArrTime').value = date + 'T00:00';
+      }
+    });
 
     document.getElementById('manualForm').onsubmit = async (e) => {
       e.preventDefault();
