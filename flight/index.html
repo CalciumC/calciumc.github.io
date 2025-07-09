@@ -38,9 +38,9 @@
       background: #ffffff;
       border: 1px solid #ccc;
       border-radius: 0.5rem;
-      padding: 0.75rem;
+      padding: 1rem;
       margin-bottom: 0.75rem;
-      display: flex;
+      /*display: flex;*/
       justify-content: space-between;
       align-items: center;
       font-size: 0.9rem;
@@ -48,7 +48,10 @@
     }
 
     .flight-line {
-      display: flexbox;
+      display: inline-flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .flight-info {
@@ -86,6 +89,21 @@
       pointer-events: none;
       z-index: 999;
     }
+
+    h2 {
+      width: 100%; 
+      text-align: center; 
+      border-bottom: 1px solid #000; 
+      line-height: 0.1em;
+      margin: 10px 0 20px; 
+      color: #666;
+      font-size: small;
+    } 
+
+    h2 span { 
+        background:#fff; 
+        padding:0 10px; 
+    }
   </style>
   <title>My Flights Tracker</title>
 </head>
@@ -107,6 +125,11 @@
     <button id="resetBtn">Reset All Flights</button>
   </main>
   <div class="version">v1.0.2</div>
+  <div style="margin-top: 1rem; display: flex; gap: 1rem;">
+    <button id="exportBtn">Export Flights</button>
+    <button id="importBtn">Import Flights</button>
+    <input type="file" id="importFile" accept=".json" style="display: none;" />
+  </div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     const flightForm = document.getElementById('flightForm');
@@ -130,7 +153,7 @@
     }
 
     function renderFlights() {
-      // flightList.innerHTML = '';
+      flightList.innerHTML = '';
       // map.eachLayer(layer => {
       //   if (layer instanceof L.Polyline) map.removeLayer(layer);
       // });
@@ -142,7 +165,7 @@
         card.className = 'flight-card';
         group.forEach((f, i) => {
           const flight = document.createElement('div');
-          card.className = 'flight-line';
+          flight.className = 'flight-line';
 
           const depTimeFormatted = f.departureTime ? new Date(f.departureTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
           const arrTimeFormatted = f.arrivalTime ? new Date(f.arrivalTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
@@ -210,11 +233,13 @@
             const layoverHours = Math.floor(layoverMinutes / 60);
             const layoverRemainingMins = layoverMinutes % 60;
 
-            const connection = document.createElement('div');
-            connection.style.textAlign = 'center';
-            connection.style.margin = '0.5rem 0';
-            connection.style.color = '#666';
-            connection.innerHTML = `⏳ Layover: ${layoverHours}h ${layoverRemainingMins}m`;
+            const connection = document.createElement('h2');
+            const connectspan = document.createElement('span');
+            // connection.style.textAlign = 'center';
+            // connection.style.margin = '0.5rem 0';
+            // connection.style.color = '#666';
+            connectspan.innerHTML = `⏳ Layover: ${layoverHours}h ${layoverRemainingMins}m`;
+            connection.appendChild(connectspan);
             card.appendChild(connection);
           }
         });
@@ -413,6 +438,60 @@
     };
 
     renderFlights();
+
+    document.getElementById('exportBtn').onclick = () => {
+      const data = localStorage.getItem('flights') || '[]';
+      const blob = new Blob([data], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `flights-${new Date().toISOString().split('T')[0]}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    };
+
+    document.getElementById('importBtn').onclick = () => {
+      document.getElementById('importFile').click();
+    };
+
+    document.getElementById('importFile').onchange = (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const importedFlights = JSON.parse(event.target.result);
+          if (!Array.isArray(importedFlights)) throw new Error('Invalid format');
+
+          // Merge with existing flights (remove duplicates by flightNumber + date)
+          const existingFlights = JSON.parse(localStorage.getItem('flights') || '[]');
+          const combined = [...existingFlights, ...importedFlights];
+
+          const uniqueFlights = [];
+          const seen = new Set();
+          for (const flight of combined) {
+            const key = `${flight.flightNumber}-${flight.date}`;
+            if (!seen.has(key)) {
+              seen.add(key);
+              uniqueFlights.push(flight);
+            }
+          }
+
+          localStorage.setItem('flights', JSON.stringify(uniqueFlights));
+          alert('Import successful!');
+          location.reload();
+        } catch (err) {
+          alert('Failed to import: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+
+      renderFlights();
+    };
 
   </script>
 
