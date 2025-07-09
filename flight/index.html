@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/png" href="icon-192.png" sizes="192x192" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
   <style>
@@ -101,7 +102,7 @@
     <div id="flightList"></div>
     <button id="resetBtn">Reset All Flights</button>
   </main>
-  <div class="version">v1.0.1</div>
+  <div class="version">v1.0.2</div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     const flightForm = document.getElementById('flightForm');
@@ -292,6 +293,8 @@
           airline: flight.airline?.name || '',
           departureTime: flight.departure.scheduledTime.local,
           arrivalTime: flight.arrival.scheduledTime.local,
+          departureTimeUTC: flight.departure.scheduledTime.utc,
+          arrivalTimeUTC: flight.arrival.scheduledTime.utc,
           departureTimeZone: flight.departure.airport.timeZone,
           arrivalTimeZone: flight.arrival.airport.timeZone,
           aircraftModel: flight.aircraft?.model || '',
@@ -318,8 +321,8 @@
           currentGroup.push(flight);
         } else {
           const prev = currentGroup[currentGroup.length - 1];
-          const prevArrival = new Date(prev.arrivalTime);
-          const nextDeparture = new Date(flight.departureTime);
+          const prevArrival = new Date(prev.arrivalTimeUTC);
+          const nextDeparture = new Date(flight.departureTimeUTC);
 
           const layoverHours = (nextDeparture - prevArrival) / (1000 * 60 * 60);
 
