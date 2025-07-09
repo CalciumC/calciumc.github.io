@@ -134,9 +134,10 @@
       const flightGroups = groupConnectedFlights(sortedFlights);
 
       flightGroups.forEach((group, groupIndex) => {
+        const card = document.createElement('div');
+        card.className = 'flight-card';
         group.forEach((f, i) => {
-          const card = document.createElement('div');
-          card.className = 'flight-card';
+          
 
           const depTimeFormatted = f.departureTime ? new Date(f.departureTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
           const arrTimeFormatted = f.arrivalTime ? new Date(f.arrivalTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
@@ -179,7 +180,7 @@
           actions.appendChild(removeBtn);
           card.appendChild(info);
           card.appendChild(actions);
-          flightList.appendChild(card);
+          
 
           // draw polyline
           if (f.coords) {
@@ -208,17 +209,19 @@
             connection.style.margin = '0.5rem 0';
             connection.style.color = '#666';
             connection.innerHTML = `⏳ Layover: ${layoverHours}h ${layoverRemainingMins}m`;
-            flightList.appendChild(connection);
+            card.appendChild(connection);
           }
         });
 
-        // Add space after each group
-        const divider = document.createElement('hr');
-        divider.style.border = '1px dashed #ccc';
-        divider.style.margin = '1rem 0';
-        flightList.appendChild(divider);
-      });
+        // // Add space after each group
+        // const divider = document.createElement('hr');
+        // divider.style.border = '1px dashed #ccc';
+        // divider.style.margin = '1rem 0';
+        // flightList.appendChild(divider);
 
+        flightList.appendChild(card);
+      });
+      
     }
 
     function offsetCoords(coords, offset = 0.5) {
