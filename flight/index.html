@@ -100,7 +100,7 @@
     <div id="flightList"></div>
     <button id="resetBtn">Reset All Flights</button>
   </main>
-  <div class="version">v1.0.0</div>
+  <div class="version">v1.0.1</div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     const flightForm = document.getElementById('flightForm');
@@ -179,7 +179,18 @@
         flightList.appendChild(card);
 
         if (f.coords) {
-          const polyline = L.polyline(f.coords, {
+          const offsetFactor = 0.15; // degrees to offset lat/lon
+          const direction = f.from < f.to ? 1 : -1; // to offset one direction differently
+
+          const offsetCoords = f.coords.map(([lat, lon], idx) => {
+            // Apply slight offset depending on order
+            return [
+              lat + direction * offsetFactor * ((i % 2 === 0 ? 1 : -1) * 0.5),
+              lon + direction * offsetFactor * ((i % 2 === 0 ? -1 : 1) * 0.5)
+            ];
+          });
+
+          const polyline = L.polyline(offsetCoords, {
             color: getRandomColor(i),
             weight: 4
           }).addTo(map);
@@ -249,24 +260,28 @@
       }
 
       const result = await lookupFlight(flightNumber, userDate);
+      // if (!result) {
+      //   alert('Flight not found or API error. You can still add it manually.');
+      //   // fallback: save minimal flight with user input data only
+      //   const minimalFlight = {
+      //     flightNumber,
+      //     from: '',
+      //     to: '',
+      //     date: userDate,
+      //     airline: '',
+      //     departureTime: '',
+      //     arrivalTime: '',
+      //     coords: null
+      //   };
+      //   flights.push(minimalFlight);
+      //   saveFlights();
+      //   renderFlights();
+      //   flightForm.reset();
+      //   return;
+      // }
       if (!result) {
-        alert('Flight not found or API error. You can still add it manually.');
-        // fallback: save minimal flight with user input data only
-        const minimalFlight = {
-          flightNumber,
-          from: '',
-          to: '',
-          date: userDate,
-          airline: '',
-          departureTime: '',
-          arrivalTime: '',
-          coords: null
-        };
-        flights.push(minimalFlight);
-        saveFlights();
-        renderFlights();
-        flightForm.reset();
-        return;
+        alert('Flight not found or not available from any provider.');
+        return; // Do NOT add to log
       }
 
       const fromCoords = await getAirportCoords(result.from);
