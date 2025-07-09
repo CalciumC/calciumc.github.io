@@ -90,7 +90,7 @@
       z-index: 999;
     }
 
-    h2 {
+    h3 {
       width: 100%; 
       text-align: center; 
       border-bottom: 1px solid #000; 
@@ -153,7 +153,7 @@
     }
 
     function renderFlights() {
-      flightList.innerHTML = '';
+      // flightList.innerHTML = '';
       // map.eachLayer(layer => {
       //   if (layer instanceof L.Polyline) map.removeLayer(layer);
       // });
@@ -233,7 +233,7 @@
             const layoverHours = Math.floor(layoverMinutes / 60);
             const layoverRemainingMins = layoverMinutes % 60;
 
-            const connection = document.createElement('h2');
+            const connection = document.createElement('h3');
             const connectspan = document.createElement('span');
             // connection.style.textAlign = 'center';
             // connection.style.margin = '0.5rem 0';
