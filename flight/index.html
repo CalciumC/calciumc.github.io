@@ -27,9 +27,9 @@
       border-radius: 0;
     }
 
-    form {
+    #flightForm {
       display: grid;
-      grid-template-columns: 2fr 1fr auto;
+      grid-template-columns: 2fr 1fr auto auto;
       gap: 0.5rem;
       align-items: center;
     }
@@ -139,7 +139,7 @@
       <input type="text" placeholder="Flight Number (e.g. BA183)" id="flightNumber" required />
       <input type="date" id="flightDate" />
       <button type="submit">Add</button>
-      <button type="button" id="manualInsertBtn">Add Historical Flight</button>
+      <button type="button" id="manualInsertBtn">Add History</button>
     </form>
 
     <div id="map"></div>
@@ -353,6 +353,13 @@
       return airport ? [airport.lat, airport.lon] : null;
     }
 
+    async function getAirportTimezone(iata) {
+      const response = await fetch("https://raw.githubusercontent.com/mwgg/Airports/master/airports.json");
+      const data = await response.json();
+      const airport = Object.values(data).find(a => a.iata === iata);
+      return airport ? airport.tz : null;
+    }
+
     const AVIATIONSTACK_API_KEY = '2482f6676b81992622bbe0d7ee97c0e5';
     const AERODATABOX_API_KEY = 'a2e2185d14msh9356b6a5b53e093p1fddffjsn4696d33cc2d6'; // Replace with your actual AeroDataBox API key
 
@@ -558,12 +565,30 @@
         airline: manualAirline.value.trim(),
         departureTime: manualDepTime.value,
         arrivalTime: manualArrTime.value,
-        coords: null
+        coords: null,
+        departureTimeUTC: null,
+        arrivalTimeUTC: null,
+        departureTimeZone: null,
+        arrivalTimeZone: null,
       };
 
       const fromCoords = await getAirportCoords(flight.from);
       const toCoords = await getAirportCoords(flight.to);
+
+      const fromTimezone = await getAirportTimezone(flight.from);
+      const toTimezone = await getAirportTimezone(flight.to);
+
       if (fromCoords && toCoords) flight.coords = [fromCoords, toCoords];
+
+      if (fromTimezone) flight.departureTimeZone = fromTimezone;
+      if (toTimezone) flight.arrivalTimeZone = toTimezone;
+
+      if (flight.departureTime) {
+        flight.departureTimeUTC = new Date(flight.departureTime).toISOString();
+      }
+      if (flight.arrivalTime) {
+        flight.arrivalTimeUTC = new Date(flight.arrivalTime).toISOString();
+      }
 
       flights.push(flight);
       saveFlights();
