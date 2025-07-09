@@ -20,7 +20,6 @@
     }
 
     #map {
-      width: 100vw;
       height: 400px;
       margin-left: -1rem;
       margin-right: -1rem;
@@ -102,7 +101,7 @@
     <div id="flightList"></div>
     <button id="resetBtn">Reset All Flights</button>
   </main>
-  <div class="version">v1.0.4</div>
+  <div class="version">v1.0.5</div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     const flightForm = document.getElementById('flightForm');
@@ -184,7 +183,7 @@
           let coordsToDraw = f.coords;
 
           if (isDuplicateLine(map, f.coords)) {
-            coordsToDraw = offsetCoords(f.coords, 0.3); // Adjust offset size as needed
+            coordsToDraw = offsetCoords(f.coords, 0.01); // Adjust offset size as needed
           }
 
           const polyline = L.polyline(coordsToDraw, {
