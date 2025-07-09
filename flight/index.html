@@ -137,7 +137,7 @@
         const card = document.createElement('div');
         card.className = 'flight-card';
         group.forEach((f, i) => {
-          
+          const flight = document.createElement('div');
 
           const depTimeFormatted = f.departureTime ? new Date(f.departureTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
           const arrTimeFormatted = f.arrivalTime ? new Date(f.arrivalTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
@@ -178,10 +178,11 @@
 
           actions.appendChild(editBtn);
           actions.appendChild(removeBtn);
-          card.appendChild(info);
-          card.appendChild(actions);
+          flight.appendChild(info);
+          flight.appendChild(actions);
           
-
+          card.appendChild(flight);
+          
           // draw polyline
           if (f.coords) {
             const polyline = L.polyline(f.coords, {
@@ -218,7 +219,7 @@
         // divider.style.border = '1px dashed #ccc';
         // divider.style.margin = '1rem 0';
         // flightList.appendChild(divider);
-
+        
         flightList.appendChild(card);
       });
       
