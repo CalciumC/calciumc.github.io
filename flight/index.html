@@ -555,6 +555,14 @@
       }
     });
 
+    document.getElementById('manualFlightNumber').addEventListener('change', () => {
+      let val = manualFlightNumber.value.trim().toUpperCase();
+      const match = val.match(/^([A-Z]{2})(\d{1,4})$/);
+      if (match) {
+        manualFlightNumber.value = `${match[1]} ${match[2]}`;
+      }
+    });
+
     document.getElementById('manualForm').onsubmit = async (e) => {
       e.preventDefault();
       const flight = {
@@ -571,14 +579,6 @@
         departureTimeZone: null,
         arrivalTimeZone: null,
       };
-
-      document.getElementById('manualFlightNumber').addEventListener('blur', () => {
-      let val = manualFlightNumber.value.trim().toUpperCase();
-      const match = val.match(/^([A-Z]{2})(\d{1,4})$/);
-      if (match) {
-        manualFlightNumber.value = `${match[1]} ${match[2]}`;
-      }
-    });
 
       const fromCoords = await getAirportCoords(flight.from);
       const toCoords = await getAirportCoords(flight.to);
@@ -602,6 +602,7 @@
       saveFlights();
       renderFlights();
       manualModal.close();
+      document.getElementById("manualForm").reset();
     };
   </script>
 
