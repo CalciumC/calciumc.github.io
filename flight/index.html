@@ -183,7 +183,8 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <!-- <script src="leaflet.curve.js"></script> -->
-   <script src="https://unpkg.com/leaflet-ant-path@0.6.1/dist/leaflet-ant-path.js"></script>
+  <script src="https://unpkg.com/leaflet-ant-path@0.6.1/dist/leaflet-ant-path.js"></script>
+  <script src="https://unpkg.com/chroma-js@2.1.0/chroma.min.js"></script>
   <script src="airport.js"></script>
   <script>
     const flightForm = document.getElementById('flightForm');
@@ -291,23 +292,23 @@
 
 
           if (f.coords) {
-  L.polyline.antPath(
-    f.coords,          // same [ [lat,lng], [lat,lng] ] array
-    {
-      delay:        400,                              // animation speed (ms)
-      dashArray:    [10, 20],                         // 10 px dash, 20 px gap
-      weight:       4,
-      color:        getRandomColor(groupIndex),
-      pulseColor:   '#ffffff',                        // the “ant” pulse
-      paused:       false
-    }
-  )
-  .addTo(map)
-  .bindTooltip(
-    `${f.flightNumber}<br>${f.from} → ${f.to}<br>${f.date}<br>${f.airline || ''}`,
-    { permanent: false, sticky: true, direction: 'top' }
-  );
-}
+            L.polyline.antPath(
+              f.coords,          // same [ [lat,lng], [lat,lng] ] array
+              {
+                delay:        400,                              // animation speed (ms)
+                dashArray:    [10, 20],                         // 10 px dash, 20 px gap
+                weight:       4,
+                color:        getRandomColor(groupIndex),
+                pulseColor:   '#ffffff',                        // the “ant” pulse
+                paused:       false
+              }
+            )
+            .addTo(map)
+            .bindTooltip(
+              `${f.flightNumber}<br>${f.from} → ${f.to}<br>${f.date}<br>${f.airline || ''}`,
+              { permanent: false, sticky: true, direction: 'top' }
+            );
+          }
 
 
           // Draw layover connection line (if not last in group)
