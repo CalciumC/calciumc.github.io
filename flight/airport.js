@@ -55,14 +55,15 @@ async function getAirportTZ(iata) {
 
 async function getCountryCode(iata) {
     const data = loadAirportsSlim();
-    const airport = Object.values(data).find(a => a.iata === iata.toUpperCase());
-    const countryName = airport?.country;
+    // const airport = Object.values(data).find(a => a.iata === iata.toUpperCase());
+    // const countryName = airport?.country;
 
-    if (typeof countries !== 'undefined') {
-        return countries.getAlpha2Code(countryName, 'en');
-    }
+    // if (typeof countries !== 'undefined') {
+    //     return countries.getAlpha2Code(countryName, 'en');
+    // }
 
-    return null;
+    // return null;
+    return data[iata.toUpperCase()]?.country || null;
 }
 
 // ------------------------------------------------------
