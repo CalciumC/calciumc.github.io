@@ -176,6 +176,7 @@
 
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="airport.js"></script>
   <script>
     const flightForm = document.getElementById('flightForm');
     const flightList = document.getElementById('flightList');
@@ -343,30 +344,6 @@
       }
 
       return false;
-    }
-
-    async function loadAirportsData() {
-      const cached = localStorage.getItem('airportsData');
-      if (cached) {
-        return JSON.parse(cached);
-      }
-
-      const response = await fetch('https://raw.githubusercontent.com/mwgg/Airports/master/airports.json');
-      const data = await response.json();
-      localStorage.setItem('airportsData', JSON.stringify(data));
-      return data;
-    }
-
-    async function getAirportCoords(code) {
-      const data = await loadAirportsData();
-      const airport = Object.values(data).find(a => a.iata === code);
-      return airport ? [airport.lat, airport.lon] : null;
-    }
-
-    async function getAirportTimezone(iata) {
-      const data = await loadAirportsData();
-      const airport = Object.values(data).find(a => a.iata === iata);
-      return airport ? airport.tz : null;
     }
 
     const AVIATIONSTACK_API_KEY = '2482f6676b81992622bbe0d7ee97c0e5';
@@ -592,8 +569,8 @@
       const fromCoords = await getAirportCoords(flight.from);
       const toCoords = await getAirportCoords(flight.to);
 
-      const fromTimezone = await getAirportTimezone(flight.from);
-      const toTimezone = await getAirportTimezone(flight.to);
+      const fromTimezone = await getAirportTZ(flight.from);
+      const toTimezone = await getAirportTZ(flight.to);
 
       if (fromCoords && toCoords) flight.coords = [fromCoords, toCoords];
 
