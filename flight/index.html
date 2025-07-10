@@ -197,8 +197,17 @@
     let flights = JSON.parse(localStorage.getItem('flights') || '[]');
 
     function getRandomColor(index) {
-      const colors = ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6'];
-      return colors[index % colors.length];
+      // const colors = ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6'];
+      // return colors[index % colors.length];
+      return randomColor();
+    }
+
+    function randomColor() {
+        const hue = Math.floor(Math.random() * 360);         // 0–360 degrees
+        const saturation = 0.7 + Math.random() * 0.3;         // 0.7–1.0 (vibrant)
+        const lightness = 0.7 + Math.random() * 0.2;          // 0.7–0.9 (light)
+
+        return chroma.hsl(hue, saturation, lightness).hex();
     }
 
     function saveFlights() {
