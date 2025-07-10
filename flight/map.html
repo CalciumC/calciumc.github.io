@@ -150,6 +150,11 @@
         if (toIso && !visitedCountries.has(toIso)) {
           visitedCountries.set(toIso, randomColor());
         }
+
+        const fromIso = await getCountryCode(f.from);
+        if (fromIso && !visitedCountries.has(fromIso)) {
+          visitedCountries.set(fromIso, randomColor());
+        }
       }
 
       countriesLayer.setStyle(feature => {
