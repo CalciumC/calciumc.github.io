@@ -100,7 +100,8 @@
       }
 
       countriesLayer.setStyle(feature => {
-        const iso = feature.properties.ISO_A2;
+        // const iso = feature.properties.ISO_A2;
+        const iso = feature.id;
         const color = visitedCountries.has(iso) ? visitedCountries.get(iso) : '#ccc';
         return {
           fillColor: color,
