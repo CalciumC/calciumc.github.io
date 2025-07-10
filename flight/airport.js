@@ -3,7 +3,7 @@
 // ------------------------------------------------------
 const AIRPORTS_URL =
   "https://raw.githubusercontent.com/mwgg/Airports/master/airports.json";
-const AIRPORTS_CACHE_KEY = "airportsSlimV1";   // bump the version if schema changes
+const AIRPORTS_CACHE_KEY = "airportsSlim";   // bump the version if schema changes
 
 const DB_NAME = 'FlightAppDB';
 const STORE_NAME = 'AirportData';
@@ -11,10 +11,10 @@ const DB_VERSION = 1;
 
 
 async function loadAirportsSlim() {
-  const cached = await getFromAirportDB('airportsSlim');
+  const cached = await getFromAirportDB(AIRPORTS_CACHE_KEY);
   if (cached) return cached;
 
-  const raw = await fetch('https://yourdomain.com/airports.json').then(res => res.json());
+  const raw = await fetch(AIRPORTS_URL).then(res => res.json());
 
   // Slim it down (skip those without IATA)
   const slim = {};
@@ -30,7 +30,7 @@ async function loadAirportsSlim() {
     };
   }
 
-  await saveToAirportDB('airportsSlim', slim);
+  await saveToAirportDB(AIRPORTS_CACHE_KEY, slim);
   return slim;
 }
 
