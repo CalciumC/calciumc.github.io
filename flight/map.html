@@ -102,7 +102,31 @@
                 ]]
             }
             }
-            );
+        );
+
+        data.features.push({
+            "type": "Feature",
+            "id": "MAC",
+            "properties": {
+                "name": "Macau"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [[
+                [113.5280, 22.1060],
+                [113.5520, 22.1060],
+                [113.5660, 22.1170],
+                [113.5660, 22.1360],
+                [113.5500, 22.1500],
+                [113.5300, 22.1500],
+                [113.5200, 22.1330],
+                [113.5200, 22.1150],
+                [113.5280, 22.1060]
+                ]]
+            }
+            }
+        );
+
 
         localStorage.setItem("countriesGeo", JSON.stringify(data));
         return data;
