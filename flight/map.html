@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Footprint</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    #map {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    h1.title {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.8);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      z-index: 1000;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="title">Your Footprint</h1>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-geoman-free@2.11.2/dist/leaflet-geoman.min.js"></script>
+  <script src="https://unpkg.com/leaflet.geojson-vt/leaflet-geojson-vt.js"></script>
+  <script src="https://unpkg.com/leaflet-ajax/dist/leaflet.ajax.min.js"></script>
+  <script src="https://unpkg.com/chroma-js@2.1.0/chroma.min.js"></script>
+
+  <script>
+    const map = L.map('map').setView([20, 0], 2);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const countriesLayer = L.geoJson(null, {
+      style: feature => {
+        const iso = feature.properties.ISO_A2;
+        const color = visitedCountries.has(iso) ? visitedCountries.get(iso) : '#ccc';
+        return {
+          fillColor: color,
+          color: '#999',
+          weight: 1,
+          fillOpacity: 0.6
+        };
+      }
+    }).addTo(map);
+
+    // Generate a color palette
+    function randomColor() {
+      return chroma.random().hex();
+    }
+
+    // Load country polygons
+    fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
+      .then(res => res.json())
+      .then(data => {
+        countriesLayer.addData(data);
+      });
+
+    // Load flights and track visited countries
+    const flights = JSON.parse(localStorage.getItem('flights') || '[]');
+    const visitedCountries = new Map();
+
+    async function getCountryCode(iata) {
+      const res = await fetch('https://raw.githubusercontent.com/mwgg/Airports/master/airports.json');
+      const data = await res.json();
+      const airport = Object.values(data).find(a => a.iata === iata);
+      return airport?.iso || null;
+    }
+
+    (async () => {
+      const countrySet = new Set();
+
+      for (const f of flights) {
+        const toIso = await getCountryCode(f.to);
+        if (toIso && !visitedCountries.has(toIso)) {
+          visitedCountries.set(toIso, randomColor());
+        }
+      }
+
+      countriesLayer.setStyle(feature => {
+        const iso = feature.properties.ISO_A2;
+        const color = visitedCountries.has(iso) ? visitedCountries.get(iso) : '#ccc';
+        return {
+          fillColor: color,
+          color: '#999',
+          weight: 1,
+          fillOpacity: 0.6
+        };
+      });
+    })();
+  </script>
+</body>
+
+</html>
