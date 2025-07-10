@@ -38,7 +38,7 @@
   width: 360px;
   max-height: 90vh;
   overflow-y: auto;
-  background: white;
+  /*background: white;*/
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.2);
   padding: 1rem;
@@ -146,6 +146,11 @@
       <button id="resetBtn">Reset All Flights</button>
     </div>
     <div class="version">v1.0.3</div>
+    <!-- <div style="margin-top: 1rem; display: flex; gap: 1rem; width: 100%;">
+      <button id="exportBtn">Export Flights</button>
+      <button id="importBtn">Import Flights</button>
+      <input type="file" id="importFile" accept=".json" style="display: none;" />
+    </div> -->
   </aside>
 </main>
 
@@ -168,12 +173,7 @@
     </article>
   </dialog>
 
-  <div class="version">v1.0.3</div>
-  <div style="margin-top: 1rem; display: flex; gap: 1rem; width: 100%;">
-    <button id="exportBtn">Export Flights</button>
-    <button id="importBtn">Import Flights</button>
-    <input type="file" id="importFile" accept=".json" style="display: none;" />
-  </div>
+  
 
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
