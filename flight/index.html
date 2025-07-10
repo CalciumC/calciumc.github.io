@@ -136,7 +136,12 @@
 
   <aside id="sidebar">
     <h1>✈️ My Flights Tracker</h1>
-    <form id="flightForm">...</form>
+    <form id="flightForm">
+      <input type="text" placeholder="Flight Number (e.g. BA183)" id="flightNumber" required />
+      <input type="date" id="flightDate" />
+      <button type="submit">Add</button>
+      <button type="button" id="manualInsertBtn">Add History</button>
+    </form>
     <h2>Flight Log</h2>
     <div id="flightList"></div>
     <div class="sidebar-actions">
