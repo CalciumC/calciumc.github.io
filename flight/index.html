@@ -182,7 +182,8 @@
 
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="leaflet.curve.js"></script>
+  <!-- <script src="leaflet.curve.js"></script> -->
+   <script src="https://unpkg.com/leaflet-ant-path@0.6.1/dist/leaflet-ant-path.js"></script>
   <script src="airport.js"></script>
   <script>
     const flightForm = document.getElementById('flightForm');
@@ -290,41 +291,23 @@
 
 
           if (f.coords) {
-              const [from, to] = f.coords;          // [lat, lng] pairs
-
-              // --- simple control point calculation ----
-              // midpoint
-              const midLat = (from[0] + to[0]) / 2;
-              const midLng = (from[1] + to[1]) / 2;
-
-              // offset the midpoint perpendicular to the line for a pleasing arc
-              const offset = 5; // degrees of lat/lng; tweak for bigger/smaller arc
-              const dLat   = to[0] - from[0];
-              const dLng   = to[1] - from[1];
-              const len    = Math.sqrt(dLat * dLat + dLng * dLng);
-
-              // Perpendicular unit vector
-              const offLat = -dLng / len;
-              const offLng =  dLat / len;
-
-              const controlLat = midLat + offLat * offset;
-              const controlLng = midLng + offLng * offset;
-
-              // build quadratic curve:  M = moveTo, Q = quadraticCurveTo
-              const path = [
-                'M', from,
-                'Q', [controlLat, controlLng], to
-              ];
-
-              L.curve(path, {
-                color: getRandomColor(groupIndex),
-                weight: 4
-              }).addTo(map)
-                .bindTooltip(
-                  `${f.flightNumber}<br>${f.from} → ${f.to}<br>${f.date}<br>${f.airline || ''}`,
-                  { permanent: false, sticky: true, direction: 'top' }
-                );
-            }
+  L.polyline.antPath(
+    f.coords,          // same [ [lat,lng], [lat,lng] ] array
+    {
+      delay:        400,                              // animation speed (ms)
+      dashArray:    [10, 20],                         // 10 px dash, 20 px gap
+      weight:       4,
+      color:        getRandomColor(groupIndex),
+      pulseColor:   '#ffffff',                        // the “ant” pulse
+      paused:       false
+    }
+  )
+  .addTo(map)
+  .bindTooltip(
+    `${f.flightNumber}<br>${f.from} → ${f.to}<br>${f.date}<br>${f.airline || ''}`,
+    { permanent: false, sticky: true, direction: 'top' }
+  );
+}
 
 
           // Draw layover connection line (if not last in group)
