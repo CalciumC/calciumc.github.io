@@ -99,7 +99,7 @@
     } 
 
     h3 span { 
-        /* background:#fff;  */
+        background:#fff; 
         padding:0 10px; 
     }
 
@@ -138,6 +138,11 @@
       padding: 0px;
       margin-top: var(--spacing);
     }
+
+    ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
   </style>
   <title>My Flights Tracker</title>
 </head>
@@ -157,7 +162,7 @@
     </form>
     <h4>Flight Log</h4>
     <div id="flightList"></div>
-    <div class="flight-actions">
+    <div class="sidebar-actions">
       <button id="exportBtn">Export Flights</button>
       <button id="importBtn">Import Flights</button>
       <input type="file" id="importFile" accept=".json" style="display: none;" />
