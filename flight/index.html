@@ -182,7 +182,7 @@
 
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/leaflet-ant-path/dist/leaflet-ant-path.min.js"></script>
+  <script src="https://unpkg.com/leaflet.curve/leaflet.curve.min.js"></script>
   <script src="airport.js"></script>
   <script>
     const flightForm = document.getElementById('flightForm');
@@ -265,27 +265,58 @@
           card.appendChild(flight);
 
           // draw polyline
+          // if (f.coords) {
+          //   // const polyline = L.polyline(f.coords, {
+          //   //   color: getRandomColor(groupIndex),
+          //   //   weight: 4
+          //   // }).addTo(map);
+
+            
+
+          //   polyline.bindTooltip(
+          //     `${f.flightNumber}<br>${f.from} → ${f.to}<br>${f.date}<br>${f.airline || ''}`,
+          //     { permanent: false, sticky: true, direction: 'top' }
+          //   );
+          // }
+
+
           if (f.coords) {
-            // const polyline = L.polyline(f.coords, {
-            //   color: getRandomColor(groupIndex),
-            //   weight: 4
-            // }).addTo(map);
+              const [from, to] = f.coords;          // [lat, lng] pairs
 
-            const polyline = L.polyline.antPath([
-              f.coords
-            ], {
-              "delay": 400,
-              "dashArray": [10, 20],
-              "weight": 4,
-              "color": getRandomColor(groupIndex),
-              "pulseColor": getRandomColor(groupIndex)
-            }).addTo(map);
+              // --- simple control point calculation ----
+              // midpoint
+              const midLat = (from[0] + to[0]) / 2;
+              const midLng = (from[1] + to[1]) / 2;
 
-            polyline.bindTooltip(
-              `${f.flightNumber}<br>${f.from} → ${f.to}<br>${f.date}<br>${f.airline || ''}`,
-              { permanent: false, sticky: true, direction: 'top' }
-            );
-          }
+              // offset the midpoint perpendicular to the line for a pleasing arc
+              const offset = 5; // degrees of lat/lng; tweak for bigger/smaller arc
+              const dLat   = to[0] - from[0];
+              const dLng   = to[1] - from[1];
+              const len    = Math.sqrt(dLat * dLat + dLng * dLng);
+
+              // Perpendicular unit vector
+              const offLat = -dLng / len;
+              const offLng =  dLat / len;
+
+              const controlLat = midLat + offLat * offset;
+              const controlLng = midLng + offLng * offset;
+
+              // build quadratic curve:  M = moveTo, Q = quadraticCurveTo
+              const path = [
+                'M', from,
+                'Q', [controlLat, controlLng], to
+              ];
+
+              L.curve(path, {
+                color: getRandomColor(groupIndex),
+                weight: 4
+              }).addTo(map)
+                .bindTooltip(
+                  `${f.flightNumber}<br>${f.from} → ${f.to}<br>${f.date}<br>${f.airline || ''}`,
+                  { permanent: false, sticky: true, direction: 'top' }
+                );
+            }
+
 
           // Draw layover connection line (if not last in group)
           if (i < group.length - 1) {
