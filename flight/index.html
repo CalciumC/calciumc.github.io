@@ -125,6 +125,18 @@
     dialog article>header {
       margin-bottom: 10px;
     }
+
+    .flight-card {
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      background: #fff;
+      border-radius: 3px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .flight-actions button{
+      padding: 0px;
+    }
   </style>
   <title>My Flights Tracker</title>
 </head>
@@ -142,9 +154,9 @@
       <button type="submit">Add</button>
       <button type="button" id="manualInsertBtn">Add History</button>
     </form>
-    <h2>Flight Log</h2>
+    <h3>Flight Log</h2>
     <div id="flightList"></div>
-    <div class="sidebar-actions">
+    <div class="flight-actions">
       <button id="exportBtn">Export Flights</button>
       <button id="importBtn">Import Flights</button>
       <input type="file" id="importFile" accept=".json" style="display: none;" />
