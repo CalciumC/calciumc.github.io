@@ -63,7 +63,11 @@
 
     // Generate a color palette
     function randomColor() {
-      return chroma.random().hex();
+      const hue = Math.floor(Math.random() * 360);       // 0 - 359
+        const saturation = 0.8 + Math.random() * 0.2;       // 0.8 - 1.0
+        const lightness = 0.5 + Math.random() * 0.3;        // 0.5 - 0.8
+
+        return chroma.hsl(hue, saturation, lightness).hex();
     }
 
     async function loadCountriesGeoJSON() {
