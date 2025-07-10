@@ -267,9 +267,19 @@
 
           // draw polyline
           if (f.coords) {
-            const polyline = L.polyline(f.coords, {
-              color: getRandomColor(groupIndex),
-              weight: 4
+            // const polyline = L.polyline(f.coords, {
+            //   color: getRandomColor(groupIndex),
+            //   weight: 4
+            // }).addTo(map);
+
+            const polyline = L.polyline.antPath([
+              f.coords
+            ], {
+              "delay": 400,
+              "dashArray": [10, 20],
+              "weight": 4,
+              "color": getRandomColor(groupIndex),
+              "pulseColor": getRandomColor(groupIndex)
             }).addTo(map);
 
             polyline.bindTooltip(
