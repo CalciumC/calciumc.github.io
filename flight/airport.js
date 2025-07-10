@@ -59,7 +59,7 @@ async function getAirportTZ(iata) {
 }
 
 async function getCountryCode(iata) {
-    const data = loadAirportsSlim();
+    const data = await loadAirportsSlim();
     // const airport = Object.values(data).find(a => a.iata === iata.toUpperCase());
     // const countryName = airport?.country;
 
