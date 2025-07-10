@@ -99,7 +99,7 @@
     } 
 
     h3 span { 
-        background:#fff; 
+        /* background:#fff;  */
         padding:0 10px; 
     }
 
@@ -245,18 +245,18 @@
           `;
 
           const actions = document.createElement('div');
-          actions.className = 'flight-actions';
+          actions.className = 'sidebar-actions';
 
-          const editBtn = document.createElement('button');
-          editBtn.textContent = 'Edit';
-          editBtn.onclick = () => {
-            const newDate = prompt('Edit flight date:', f.date);
-            if (newDate) {
-              flights[flights.findIndex(fl => fl.flightNumber === f.flightNumber && fl.date === f.date)] = { ...f, date: newDate };
-              saveFlights();
-              renderFlights();
-            }
-          };
+          // const editBtn = document.createElement('button');
+          // editBtn.textContent = 'Edit';
+          // editBtn.onclick = () => {
+          //   const newDate = prompt('Edit flight date:', f.date);
+          //   if (newDate) {
+          //     flights[flights.findIndex(fl => fl.flightNumber === f.flightNumber && fl.date === f.date)] = { ...f, date: newDate };
+          //     saveFlights();
+          //     renderFlights();
+          //   }
+          // };
 
           const removeBtn = document.createElement('button');
           removeBtn.textContent = 'Remove';
