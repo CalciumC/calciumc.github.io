@@ -99,11 +99,11 @@ async function getCountryCode(iata) {
     // const airport = Object.values(data).find(a => a.iata === iata.toUpperCase());
     const countryName = data[iata.toUpperCase()]?.country;
 
-    if (!countryName) return null;
+    // if (!countryName) return null;
 
-    return iso2to3[countryName];
+    // return iso2to3[countryName];
     
-    // return data[iata.toUpperCase()]?.country || null;
+    return data[iata.toUpperCase()]?.country || null;
 }
 
 function openAirportDB() {
