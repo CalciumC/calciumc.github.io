@@ -5,30 +5,35 @@ const AIRPORTS_URL =
   "https://raw.githubusercontent.com/mwgg/Airports/master/airports.json";
 const AIRPORTS_CACHE_KEY = "airportsSlimV1";   // bump the version if schema changes
 
+const DB_NAME = 'FlightAppDB';
+const STORE_NAME = 'AirportData';
+const DB_VERSION = 1;
+
+
 async function loadAirportsSlim() {
-  const cached = localStorage.getItem(AIRPORTS_CACHE_KEY);
-  if (cached) return JSON.parse(cached);
+  const cached = await getFromAirportDB('airportsSlim');
+  if (cached) return cached;
 
-  const res = await fetch(AIRPORTS_URL);
-  const full = await res.json();
+  const raw = await fetch('https://yourdomain.com/airports.json').then(res => res.json());
 
+  // Slim it down (skip those without IATA)
   const slim = {};
-  for (const code in full) {
-    const a = full[code];
-    if (a.iata) {
-      slim[a.iata.toUpperCase()] = {
-        name: a.name,
-        lat: a.lat,
-        lon: a.lon,
-        tz: a.tz,
-        country: a.country,
-      };
-    }
+  for (const key in raw) {
+    const a = raw[key];
+    if (!a.iata) continue;
+    slim[a.iata.toUpperCase()] = {
+      name: a.name,
+      lat:  a.lat,
+      lon:  a.lon,
+      tz:   a.tz,
+      country:  a.country
+    };
   }
 
-  localStorage.setItem(AIRPORTS_CACHE_KEY, JSON.stringify(slim));
+  await saveToAirportDB('airportsSlim', slim);
   return slim;
 }
+
 
 // ------------------------------------------------------
 //  Convenience look‑ups using the slim cache
@@ -66,8 +71,44 @@ async function getCountryCode(iata) {
     return data[iata.toUpperCase()]?.country || null;
 }
 
-// ------------------------------------------------------
-//  Example usage:
-//  const coords = await getAirportCoords("LHR");
-//  const tz     = await getAirportTZ("HKG");
-// ------------------------------------------------------
+function openAirportDB() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+    request.onupgradeneeded = (event) => {
+      const db = event.target.result;
+      if (!db.objectStoreNames.contains(STORE_NAME)) {
+        db.createObjectStore(STORE_NAME);
+      }
+    };
+
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
+}
+
+function saveToAirportDB(key, value) {
+  return openAirportDB().then(db => {
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE_NAME, 'readwrite');
+      const store = tx.objectStore(STORE_NAME);
+      store.put(value, key);
+
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+    });
+  });
+}
+
+function getFromAirportDB(key) {
+  return openAirportDB().then(db => {
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE_NAME, 'readonly');
+      const store = tx.objectStore(STORE_NAME);
+      const request = store.get(key);
+
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    });
+  });
+}
