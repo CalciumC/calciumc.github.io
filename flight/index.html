@@ -37,7 +37,7 @@
   left: 1rem;
   width: 360px;
   max-height: 90vh;
-  overflow-y: hidden;
+  overflow-y: scroll;
   background: #11191f;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.2);
@@ -135,7 +135,6 @@
   <div id="map"></div>
 
   <aside id="sidebar">
-    <div style="overflow-y: scroll;">
     <h1>✈️ My Flights Tracker</h1>
     <form id="flightForm">
       <input type="text" placeholder="Flight Number (e.g. BA183)" id="flightNumber" required />
@@ -157,7 +156,6 @@
       <button id="importBtn">Import Flights</button>
       <input type="file" id="importFile" accept=".json" style="display: none;" />
     </div> -->
-    </div>
   </aside>
 </main>
 
@@ -184,6 +182,7 @@
 
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-ant-path/dist/leaflet-ant-path.min.js"></script>
   <script src="airport.js"></script>
   <script>
     const flightForm = document.getElementById('flightForm');
