@@ -345,17 +345,26 @@
       return false;
     }
 
+    async function loadAirportsData() {
+      const cached = localStorage.getItem('airportsData');
+      if (cached) {
+        return JSON.parse(cached);
+      }
+
+      const response = await fetch('https://raw.githubusercontent.com/mwgg/Airports/master/airports.json');
+      const data = await response.json();
+      localStorage.setItem('airportsData', JSON.stringify(data));
+      return data;
+    }
 
     async function getAirportCoords(code) {
-      const response = await fetch(`https://raw.githubusercontent.com/mwgg/Airports/master/airports.json`);
-      const data = await response.json();
+      const data = await loadAirportsData();
       const airport = Object.values(data).find(a => a.iata === code);
       return airport ? [airport.lat, airport.lon] : null;
     }
 
     async function getAirportTimezone(iata) {
-      const response = await fetch("https://raw.githubusercontent.com/mwgg/Airports/master/airports.json");
-      const data = await response.json();
+      const data = await loadAirportsData();
       const airport = Object.values(data).find(a => a.iata === iata);
       return airport ? airport.tz : null;
     }
