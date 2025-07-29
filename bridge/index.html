@@ -91,6 +91,7 @@
   let dealerIndex = 0;
   let currentBids = [];
   let currentTricks = [];
+    let rounds = [];
 
   function startGame() {
     const namesInput = document.getElementById("player-names").value;
@@ -159,6 +160,9 @@
     const total = currentBids.reduce((a,b) => a + b, 0);
     if(total === round) return alert(`估墩總和唔可以等於 ${round}`);
 
+    // 新增空 round entry，稍後 submitTricks 再補完 actuals
+    rounds[round - 1] = { bids: [...currentBids], actuals: Array(players.length).fill(null) };
+
     // 估墩完成，準備實際墩數輸入
     document.getElementById("bid-section").classList.add("hidden");
     document.getElementById("tricks-section").classList.remove("hidden");
@@ -222,6 +226,9 @@
     if (event) event.preventDefault();
     if(currentTricks.includes(null)) return alert("請完成所有玩家嘅實際墩數");
 
+     // 儲存 actuals
+    rounds[round - 1].actuals = [...currentTricks];
+
     // 計分
     for(let i=0; i<players.length; i++){
       if(currentTricks[i] === currentBids[i]){
@@ -261,13 +268,14 @@
   headerRow.appendChild(playerHeader);
 
   // 每回合：估墩、實際、結果 (三個欄)
-  for (let i = 0; i < rounds.length; i++) {
-    const headers = ["估墩", "實際", "結果"];
-    headers.forEach((label) => {
-      const th = document.createElement("th");
-      th.textContent = `第 ${i + 1} 回合\n${label}`;
-      th.className = "border border-gray-700 p-2 whitespace-pre-wrap";
-      headerRow.appendChild(th);
+  if (typeof rounds !== 'undefined') {
+    rounds.forEach((_, index) => {
+      ["估墩", "實墩", "結果"].forEach((label) => {
+        const th = document.createElement("th");
+        th.textContent = `第 ${index + 1} 回合\n${label}`;
+        th.className = "border border-gray-700 p-2 whitespace-pre-wrap";
+        headerRow.appendChild(th);
+      });
     });
   }
 
