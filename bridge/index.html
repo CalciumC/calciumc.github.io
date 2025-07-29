@@ -404,7 +404,7 @@ function getMaxScore() {
 
   const bidSumDiv = document.getElementById("bidSumStatus");
   bidSumDiv.innerText = `估墩總和：${sum}`;
-  if (sum === round + 1) {
+  if (sum === round) {
     bidSumDiv.style.color = "red";
     bidSumDiv.innerText += " ❌";
   } else {
