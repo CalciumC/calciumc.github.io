@@ -48,9 +48,9 @@
         <p class="font-semibold">估墩階段</p>
         <form onsubmit="submitBids(); return false;" class="space-y-2">
           <div id="bid-inputs" class="space-y-2"></div>
+          <div id="bidSumStatus" style="margin-top: 10px;"></div>
           <button type="submit" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded w-full">提交估墩</button>
         </form>
-        <div id="bidSumStatus" style="margin-top: 10px;"></div>
         <div id="bid-warning" class="text-red-500"></div>
       </div>
 
@@ -272,7 +272,7 @@
     rounds.forEach((_, index) => {
       ["估墩", "實墩", "結果"].forEach((label) => {
         const th = document.createElement("th");
-        th.textContent = `第 ${index + 1} 回合\n${label}`;
+        th.textContent = `R${index + 1}${label}`;
         th.className = "border border-gray-700 p-2 whitespace-pre-wrap";
         headerRow.appendChild(th);
       });
@@ -399,7 +399,7 @@ function getMaxScore() {
 }
 
 document.querySelectorAll(".bid-input").forEach((input) => {
-  input.addEventListener("input", updateBidSumStatus);
+  input.addEventListener("change", updateBidSumStatus);
 });
 
 </script>
