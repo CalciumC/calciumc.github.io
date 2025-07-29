@@ -40,7 +40,7 @@
     <h1 class="text-3xl font-bold text-center mb-4">橋牌 計分器</h1>
 
     <div id="player-setup" class="space-y-2">
-      <label class="block mb-1">玩家名稱 (用逗號分隔):</label>
+      <label class="block mb-1">玩家名稱 (用空格分隔):</label>
       <input id="player-names" type="text" class="w-full p-2 rounded" placeholder="例如: 阿明,阿強,小美" />
       <button onclick="startGame()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded mt-2 w-full">開始遊戲</button>
     </div>
@@ -104,7 +104,7 @@
 
   function startGame() {
     const namesInput = document.getElementById("player-names").value;
-    players = namesInput.split(",").map(n => n.trim()).filter(Boolean);
+    players = namesInput.split(" ").map(n => n.trim()).filter(Boolean);
     if (players.length < 2) return alert("請輸入至少兩位玩家");
     scores = Array(players.length).fill(0);
     maxRounds = Math.floor(52 / players.length);
