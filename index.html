@@ -3,12 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>多功能工具箱</title>
+  <title>Calcium 多功能工具箱</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="icon" href="/favicon.png" type="image/x-icon" />
+  <style>
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('/icon-background.png') center center / cover no-repeat;
+      opacity: 0.1;
+      z-index: -1;
+    }
+  </style>
 </head>
 <body class="bg-gradient-to-br from-gray-100 to-white min-h-screen flex flex-col items-center justify-center font-sans text-gray-800">
   <header class="mb-12 text-center">
-    <h1 class="text-4xl font-bold mb-2">🧰 多功能工具箱</h1>
+    <h1 class="text-4xl font-bold mb-2">🧰 Calcium 多功能工具箱</h1>
     <p class="text-lg text-gray-600">選擇你需要的工具</p>
   </header>
 
@@ -35,7 +49,7 @@
   </main>
 
   <footer class="mt-12 text-sm text-gray-500">
-    © 2025 Calvin's Toolbox
+    © 2025 Calcium's Toolbox
   </footer>
 </body>
 </html>
