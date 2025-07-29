@@ -247,45 +247,111 @@
 
   function updateScoreboard() {
   const table = document.getElementById("scoreboard");
-  table.innerHTML = "";
+  table.innerHTML = ""; // Clear existing content
+
+  const thead = document.createElement("thead");
+  thead.className = "bg-gray-800";
 
   const headerRow = document.createElement("tr");
-  headerRow.innerHTML = `<th>玩家</th>` + rounds.map((_, i) => `<th>回合 ${i + 1}</th>`).join('') + `<th>總分</th>`;
-  table.appendChild(headerRow);
+
+  // 第一欄：玩家名
+  const playerHeader = document.createElement("th");
+  playerHeader.textContent = "玩家";
+  playerHeader.className = "border border-gray-700 p-2";
+  headerRow.appendChild(playerHeader);
+
+  // 每回合：估墩、實際、結果 (三個欄)
+  for (let i = 0; i < rounds.length; i++) {
+    const headers = ["估墩", "實際", "結果"];
+    headers.forEach((label) => {
+      const th = document.createElement("th");
+      th.textContent = `第 ${i + 1} 回合\n${label}`;
+      th.className = "border border-gray-700 p-2 whitespace-pre-wrap";
+      headerRow.appendChild(th);
+    });
+  }
+
+  // 最後一欄：總分
+  const scoreHeader = document.createElement("th");
+  scoreHeader.textContent = "總分";
+  scoreHeader.className = "border border-gray-700 p-2";
+  headerRow.appendChild(scoreHeader);
+
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  // 建立 tbody
+  const tbody = document.createElement("tbody");
+  tbody.className = "bg-gray-900";
 
   players.forEach((player, index) => {
     const row = document.createElement("tr");
-    row.innerHTML = `<td>${player}</td>`;
-    
+
+    // 玩家名
+    const playerCell = document.createElement("td");
+    playerCell.textContent = player;
+    playerCell.className = "border border-gray-700 p-2";
+    row.appendChild(playerCell);
+
     let totalScore = 0;
 
-    rounds.forEach((round, roundIndex) => {
+    for (let i = 0; i < rounds.length; i++) {
+      const round = rounds[i];
       const bid = round.bids[index];
       const actual = round.actuals[index];
+
+      // 估墩 cell
+      const bidCell = document.createElement("td");
+      bidCell.textContent = bid ?? "-";
+      bidCell.className = "border border-gray-700 p-2 text-center";
+      row.appendChild(bidCell);
+
+      // 實際墩 cell
+      const actualCell = document.createElement("td");
+      actualCell.textContent = actual ?? "-";
+      actualCell.className = "border border-gray-700 p-2 text-center";
+      row.appendChild(actualCell);
+
+      // 結果 cell
+      const resultCell = document.createElement("td");
       let result = "";
       let points = 0;
 
       if (bid !== null && actual !== null) {
         if (bid === actual) {
-          result = `<span style="color:gold;">✔️</span>`;
+          result = "✔️";
+          resultCell.style.color = "gold";
           points = 10 + bid;
         } else {
-          result = `<span style="color:red;">❌</span>`;
+          result = "❌";
+          resultCell.style.color = "red";
           points = -Math.abs(bid - actual);
         }
         totalScore += points;
       }
+      resultCell.textContent = result;
+      resultCell.className = "border border-gray-700 p-2 text-center";
+      row.appendChild(resultCell);
+    }
 
-      row.innerHTML += `<td>
-        <div>估：${bid ?? "-"}<br>實：${actual ?? "-"}<br>${result}</div>
-      </td>`;
-    });
+    // 總分 cell
+    const scoreCell = document.createElement("td");
+    scoreCell.textContent = totalScore;
+    scoreCell.className = "border border-gray-700 p-2 font-bold text-center";
+    row.appendChild(scoreCell);
 
-    row.innerHTML += `<td><strong>${totalScore}</strong></td>`;
-    if (totalScore === getMaxScore()) row.style.backgroundColor = "#1e5128"; // highlight leader
-    table.appendChild(row);
+    // 如果係領先者就 highlight row
+    if (totalScore === getMaxScore()) {
+      row.style.backgroundColor = "#1e5128";
+    }
+
+    tbody.appendChild(row);
   });
+
+  table.appendChild(tbody);
 }
+
+
 
 function getMaxScore() {
   const scores = players.map((_, index) => {
