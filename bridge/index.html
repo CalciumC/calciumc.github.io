@@ -41,7 +41,7 @@
 
     <div id="player-setup" class="space-y-2">
       <label class="block mb-1">玩家名稱 (用空格分隔):</label>
-      <input id="player-names" type="text" class="w-full p-2 rounded" placeholder="例如: 阿明,阿強,小美" />
+      <input id="player-names" type="text" class="w-full p-2 rounded" placeholder="例如: 宇琪 小美 安如真 ROSE" />
       <button onclick="startGame()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded mt-2 w-full">開始遊戲</button>
     </div>
 
@@ -76,16 +76,6 @@
       <div>
         <h2 class="text-lg font-bold">分數板</h2>
         <table class="w-full text-sm border-collapse border border-gray-700" id="scoreboard">
-          <!-- <thead class="bg-gray-800">
-            <tr>
-              <th class="border border-gray-700 p-2">玩家</th>
-              <th class="border border-gray-700 p-2">估墩</th>
-              <th class="border border-gray-700 p-2">實際墩數</th>
-              <th class="border border-gray-700 p-2">結果</th>
-              <th class="border border-gray-700 p-2">分數</th>
-            </tr>
-          </thead>
-          <tbody id="scoreboard-body" class="bg-gray-900"></tbody> -->
         </table>
       </div>
 
@@ -118,8 +108,15 @@
 
   function updateRoundDisplay() {
   const display = document.getElementById("roundDisplay");
-  display.innerText = `第 ${round + 1} 回合`;
-  if (round + 1 === maxRounds) {
+  display.innerText = `第 ${round} 回合`;
+
+    const reminder = document.createElement("span");
+    reminder.innerText = `（${round}張手牌）`;
+    reminder.style.color = "#df3079";
+    reminder.style.marginLeft = "8px";
+    display.appendChild(reminder);
+
+  if (round  === maxRounds) {
     const finalNote = document.createElement("span");
     finalNote.innerText = "（本回合為最終回合）";
     finalNote.style.color = "gold";
