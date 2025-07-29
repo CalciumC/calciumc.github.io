@@ -137,6 +137,11 @@
     document.getElementById("bid-warning").innerText = "";
     document.getElementById("bid-section").classList.remove("hidden");
     document.getElementById("tricks-section").classList.add("hidden");
+
+    document.querySelectorAll(".bid-input").forEach((input) => {
+        input.addEventListener("change", updateBidSumStatus);
+    });
+    updateBidSumStatus(); // 初始化估墩總和狀態
   }
 
   function handleBidInput(index) {
@@ -398,9 +403,7 @@ function getMaxScore() {
   }
 }
 
-document.querySelectorAll(".bid-input").forEach((input) => {
-  input.addEventListener("change", updateBidSumStatus);
-});
+
 
 </script>
 
