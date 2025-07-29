@@ -219,6 +219,7 @@
   }
 
   function submitTricks() {
+    if (event) event.preventDefault();
     if(currentTricks.includes(null)) return alert("請完成所有玩家嘅實際墩數");
 
     // 計分
