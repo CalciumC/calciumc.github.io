@@ -108,8 +108,8 @@
 
   function updateRoundDisplay() {
   const display = document.getElementById("roundDisplay");
-  display.innerText = `第 ${currentRound + 1} 回合`;
-  if (currentRound + 1 === totalRounds) {
+  display.innerText = `第 ${round + 1} 回合`;
+  if (round + 1 === totalRounds) {
     const finalNote = document.createElement("span");
     finalNote.innerText = "（本回合為最終回合）";
     finalNote.style.color = "gold";
