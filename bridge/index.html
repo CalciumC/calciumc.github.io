@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>橋牌 計分器</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #0f172a; color: white; }
+    input { color: black; }
+  </style>
+</head>
+<body class="p-4">
+  <div class="max-w-xl mx-auto space-y-6">
+    <h1 class="text-3xl font-bold text-center mb-4">橋牌 計分器</h1>
+
+    <div id="player-setup" class="space-y-2">
+      <label class="block mb-1">玩家名稱 (用逗號分隔):</label>
+      <input id="player-names" type="text" class="w-full p-2 rounded" placeholder="例如: 阿明,阿強,小美" />
+      <button onclick="startGame()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded mt-2 w-full">開始遊戲</button>
+    </div>
+
+    <div id="game" class="hidden space-y-4">
+
+      <div>
+        <p class="font-bold">第 <span id="round-number">1</span> 回合</p>
+        <p>首發玩家: <span id="starting-player" class="text-yellow-300 font-semibold"></span></p>
+      </div>
+
+      <!-- 估墩階段 -->
+      <div id="bid-section" class="space-y-2">
+        <p class="font-semibold">估墩階段</p>
+        <form onsubmit="submitBids(); return false;" class="space-y-2">
+          <div id="bid-inputs" class="space-y-2"></div>
+          <button type="submit" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded w-full">提交估墩</button>
+        </form>
+        <div id="bid-warning" class="text-red-500"></div>
+      </div>
+
+      <!-- 實際墩數階段 -->
+      <div id="tricks-section" class="hidden space-y-2">
+        <p class="font-semibold">實際墩數階段</p>
+        <form onsubmit="submitTricks(); return false;" class="space-y-2">
+          <div id="trick-inputs" class="space-y-2"></div>
+          <button type="submit" class="bg-yellow-600 hover:bg-yellow-700 px-4 py-2 rounded w-full">提交實際墩數</button>
+        </form>
+      </div>
+
+      <!-- 分數板 -->
+      <div>
+        <h2 class="text-lg font-bold">分數板</h2>
+        <table class="w-full text-sm border-collapse border border-gray-700">
+          <thead class="bg-gray-800">
+            <tr>
+              <th class="border border-gray-700 p-2">玩家</th>
+              <th class="border border-gray-700 p-2">估墩</th>
+              <th class="border border-gray-700 p-2">實際墩數</th>
+              <th class="border border-gray-700 p-2">結果</th>
+              <th class="border border-gray-700 p-2">分數</th>
+            </tr>
+          </thead>
+          <tbody id="scoreboard-body" class="bg-gray-900"></tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+  let players = [];
+  let scores = [];
+  let round = 1;
+  let maxRounds = 1;
+  let dealerIndex = 0;
+  let currentBids = [];
+  let currentTricks = [];
+
+  function startGame() {
+    const namesInput = document.getElementById("player-names").value;
+    players = namesInput.split(",").map(n => n.trim()).filter(Boolean);
+    if (players.length < 2) return alert("請輸入至少兩位玩家");
+    scores = Array(players.length).fill(0);
+    maxRounds = Math.floor(52 / players.length);
+    document.getElementById("player-setup").classList.add("hidden");
+    document.getElementById("game").classList.remove("hidden");
+    updateRoundDisplay();
+    showBidInputs();
+    clearTrickSection();
+    updateScoreboard();
+  }
+
+  function updateRoundDisplay() {
+    document.getElementById("round-number").innerText = round;
+    document.getElementById("starting-player").innerText = players[dealerIndex];
+  }
+
+  function showBidInputs() {
+    currentBids = Array(players.length).fill(null);
+    const container = document.getElementById("bid-inputs");
+    container.innerHTML = "";
+    for(let i=0; i<players.length; i++) {
+      const idx = (dealerIndex + i) % players.length;
+      const div = document.createElement("div");
+      div.className = "flex items-center space-x-2";
+      div.innerHTML = `
+        <label class="w-20">${players[idx]}</label>
+        <input type="number" min="0" class="p-1 rounded w-20" onchange="handleBidInput(${idx})" id="bid-${idx}" required />
+      `;
+      container.appendChild(div);
+    }
+    document.getElementById("bid-warning").innerText = "";
+    document.getElementById("bid-section").classList.remove("hidden");
+    document.getElementById("tricks-section").classList.add("hidden");
+  }
+
+  function handleBidInput(index) {
+    const val = parseInt(document.getElementById(`bid-${index}`).value);
+    currentBids[index] = isNaN(val) ? null : val;
+
+    // 估墩輸入完成先檢查總和
+    if(currentBids.filter(v => v !== null).length === players.length){
+      const total = currentBids.reduce((a,b) => a + b, 0);
+      if(total === round){
+        document.getElementById("bid-warning").innerText = `估墩總和唔可以等於 ${round}`;
+      } else {
+        document.getElementById("bid-warning").innerText = "";
+      }
+    }
+  }
+
+  function submitBids() {
+    if(currentBids.includes(null)) return alert("請完成所有玩家嘅估墩");
+    const total = currentBids.reduce((a,b) => a + b, 0);
+    if(total === round) return alert(`估墩總和唔可以等於 ${round}`);
+
+    // 估墩完成，準備實際墩數輸入
+    document.getElementById("bid-section").classList.add("hidden");
+    document.getElementById("tricks-section").classList.remove("hidden");
+
+    showTrickInputs();
+    updateScoreboard(); // 估墩提交後即時更新分數板顯示估墩
+  }
+
+  function showTrickInputs() {
+    currentTricks = Array(players.length).fill(null);
+    const container = document.getElementById("trick-inputs");
+    container.innerHTML = "";
+
+    // header row
+    const headerDiv = document.createElement("div");
+    headerDiv.className = "flex items-center space-x-2 font-semibold border-b border-gray-600 pb-1 mb-2";
+    headerDiv.innerHTML = `
+      <div class="w-20">玩家</div>
+      <div class="w-12 text-right">估墩</div>
+      <div class="w-20">實際墩數</div>
+      <div class="w-20">結果</div>
+    `;
+    container.appendChild(headerDiv);
+
+    for(let i=0; i<players.length; i++){
+      const idx = (dealerIndex + i) % players.length;
+      const div = document.createElement("div");
+      div.className = "flex items-center space-x-2";
+      div.innerHTML = `
+        <label class="w-20">${players[idx]}</label>
+        <div class="w-12 text-right font-semibold">${currentBids[idx]}</div>
+        <input type="number" min="0" class="p-1 rounded w-20" onchange="handleTrickInput(${idx})" id="trick-${idx}" required />
+        <div id="result-msg-${idx}" class="w-20 font-semibold"></div>
+      `;
+      container.appendChild(div);
+    }
+  }
+
+  function handleTrickInput(index) {
+    const val = parseInt(document.getElementById(`trick-${index}`).value);
+    currentTricks[index] = isNaN(val) ? null : val;
+
+    // 顯示成功或失敗訊息
+    const msgDiv = document.getElementById(`result-msg-${index}`);
+    if(currentTricks[index] === null){
+      msgDiv.innerText = "";
+      return;
+    }
+    if(currentTricks[index] === currentBids[index]){
+      msgDiv.innerText = "成功!";
+      msgDiv.classList.remove("text-red-600");
+      msgDiv.classList.add("text-yellow-400");
+    } else {
+      msgDiv.innerText = "失敗";
+      msgDiv.classList.remove("text-yellow-400");
+      msgDiv.classList.add("text-red-600");
+    }
+  }
+
+  function submitTricks() {
+    if(currentTricks.includes(null)) return alert("請完成所有玩家嘅實際墩數");
+
+    // 計分
+    for(let i=0; i<players.length; i++){
+      if(currentTricks[i] === currentBids[i]){
+        scores[i] += 10 + Math.pow(2, currentBids[i]);
+      } else {
+        scores[i] -= currentBids[i];
+      }
+    }
+    updateScoreboard();
+
+    // 下一回合準備
+    round++;
+    dealerIndex = (dealerIndex + 1) % players.length;
+    if(round > maxRounds){
+      alert("遊戲完結！");
+      return;
+    }
+
+    document.getElementById("tricks-section").classList.add("hidden");
+    showBidInputs();
+    updateRoundDisplay();
+  }
+
+  function updateScoreboard() {
+    const tbody = document.getElementById("scoreboard-body");
+    tbody.innerHTML = "";
+    for(let i=0; i<players.length; i++){
+      const bid = currentBids[i] !== null && currentBids[i] !== undefined ? currentBids[i] : "";
+      const trick = currentTricks[i] !== null && currentTricks[i] !== undefined ? currentTricks[i] : "";
+      const result = (currentTricks[i] === currentBids[i] && currentTricks[i] !== null) ? "成功" :
+                     (currentTricks[i] !== null ? "失敗" : "");
+      const colorClass = (result === "成功") ? "text-yellow-400" :
+                         (result === "失敗" ? "text-red-600" : "");
+      tbody.innerHTML += `
+        <tr>
+          <td class="border border-gray-700 p-2">${players[i]}</td>
+          <td class="border border-gray-700 p-2 text-center">${bid}</td>
+          <td class="border border-gray-700 p-2 text-center">${trick}</td>
+          <td class="border border-gray-700 p-2 text-center font-semibold ${colorClass}">${result}</td>
+          <td class="border border-gray-700 p-2 text-center font-semibold">${scores[i]}</td>
+        </tr>
+      `;
+    }
+  }
+
+  function clearTrickSection(){
+    currentTricks = Array(players.length).fill(null);
+  }
+</script>
+
+</body>
+</html>
