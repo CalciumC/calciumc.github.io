@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>橋牌 計分器</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- manifest -->
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#111827" />
+
+<!-- Apple support -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="apple-touch-icon" href="icon-192.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
   <style>
     body { background-color: #0f172a; color: white; }
     input {
@@ -403,7 +412,12 @@ function getMaxScore() {
   }
 }
 
-
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("service-worker.js")
+    .then(reg => console.log("Service Worker Registered", reg))
+    .catch(err => console.error("Service Worker Error", err));
+}
 
 </script>
 
