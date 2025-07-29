@@ -154,6 +154,7 @@
   }
 
   function submitBids() {
+    if (event) event.preventDefault();
     if(currentBids.includes(null)) return alert("請完成所有玩家嘅估墩");
     const total = currentBids.reduce((a,b) => a + b, 0);
     if(total === round) return alert(`估墩總和唔可以等於 ${round}`);
