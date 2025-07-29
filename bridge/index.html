@@ -130,7 +130,7 @@
       div.className = "flex items-center space-x-2";
       div.innerHTML = `
         <label class="w-20">${players[idx]}</label>
-        <input type="number" min="0" class="p-1 rounded w-20" onchange="handleBidInput(${idx})" id="bid-${idx}" required />
+        <input type="number" min="0" class="p-1 rounded bid-input w-20" onchange="handleBidInput(${idx})" id="bid-${idx}" required />
       `;
       container.appendChild(div);
     }
