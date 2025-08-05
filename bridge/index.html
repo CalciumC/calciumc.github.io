@@ -303,7 +303,7 @@
       // 每回合：估墩、實際、結果 (三個欄)
       if (typeof rounds !== 'undefined') {
         rounds.forEach((_, index) => {
-          ["估墩", "實墩", "結果"].forEach((label) => {
+          ["估墩", "實墩", "結果", "分數"].forEach((label) => {
             const th = document.createElement("th");
             th.textContent = `R${index + 1}${label}`;
             th.className = "border border-gray-700 p-2 whitespace-pre-wrap";
@@ -373,6 +373,11 @@
           resultCell.textContent = result;
           resultCell.className = "border border-gray-700 p-2 text-center";
           row.appendChild(resultCell);
+
+          const pointsCell = document.createElement("td");
+          pointsCell.textContent = points > 0 ? "+" + points : points;
+          pointsCell.className = "border border-gray-700 p-2 text-center";
+          row.appendChild(pointsCell);
         }
 
         // 總分 cell
