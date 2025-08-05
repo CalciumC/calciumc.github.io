@@ -56,8 +56,8 @@
     <h1 class="text-3xl font-bold text-center mb-4">橋牌 計分器</h1>
 
     <div id="player-setup" class="space-y-2">
-      <label class="block mb-1">玩家名稱 (用空格分隔):</label>
-      <input id="player-names" type="text" class="w-full p-2 rounded" placeholder="例如: 宇琪 小美 安如真 ROSE" />
+      <label class="block mb-1">按先後次序輸入玩家名稱 (用空格分隔):</label>
+      <input id="player-names" type="text" class="w-full p-2 rounded" placeholder="例如: 宇琪(首發) 小美 安如真 ROSE" />
       <button onclick="startGame()"
         class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded mt-2 w-full">開始遊戲</button>
     </div>
@@ -362,7 +362,7 @@
             if (bid === actual) {
               result = "✔️";
               resultCell.style.color = "gold";
-              points = 10 + bid;
+              points = 10 + Math.pow(2, bid);
             } else {
               result = "❌";
               resultCell.style.color = "red";
