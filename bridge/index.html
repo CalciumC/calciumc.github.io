@@ -400,7 +400,7 @@
           const bid = round.bids[index];
           const actual = round.actuals[index];
           if (bid !== null && actual !== null) {
-            return sum + (bid === actual ? 10 + bid : -Math.abs(bid - actual));
+            return sum + (bid === actual ? 10 + Math.pow(2,bid) : -Math.abs(bid - actual));
           }
           return sum;
         }, 0);
